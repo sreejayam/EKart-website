@@ -3,91 +3,190 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Us</title>
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>About Us - Savaari</title>
     <style>
         body {
-            font-family: 'Arial', sans-serif;
-            line-height: 1.6;
-            background-color: #f4f4f4;
-            color: #333;
-            margin: 20px;
+            font-family: Nunito, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f7f7f7;
         }
 
-        header {
-            background-color: #ff69b4;
-            padding: 20px;
-            text-align: center;
-            color: #fff;
+        .text-blk {
+            margin: 0;
+            padding: 0;
+            line-height: 25px;
+            font-size: 16px; /* Reduced text size by one size */
         }
 
-        main {
-            max-width: 800px;
-            margin: 20px auto;
-            padding: 20px;
-            background-color: #fff;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-
-        footer {
-            background-color: #343a40;
-            padding: 10px;
-            text-align: center;
-            color: #fff;
-            position: fixed;
-            bottom: 0;
+        .responsive-container-block {
+            min-height: 75px;
+            height: fit-content;
             width: 100%;
+            padding: 10px;
+            display: flex;
+            flex-wrap: wrap;
+            margin: 0 auto;
+            justify-content: flex-start;
         }
 
-        p {
-            margin-bottom: 15px;
+        .responsive-container-block.bigContainer {
+            padding: 10px 30px;
+            background-image: url("https://workik-widget-assets.s3.amazonaws.com/widget-assets/images/bb29.png");
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-color: initial;
         }
 
-        h1 {
-            color: #fff;
+        .responsive-container-block.Container {
+            max-width: 800px;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            margin: 150px auto; /* Reduced margin */
+            background-color: white;
+            border-radius: 10px;
         }
 
-        img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 8px;
-            margin-bottom: 20px;
+        .text-blk.heading {
+            font-size: 34px; /* Reduced heading font size */
+            line-height: 42px;
+            font-weight: 800;
+            margin-bottom: 20px; /* Reduced margin */
         }
 
-        /* Custom Font Style */
-        .custom-font {
-            font-family: 'Cursive', sans-serif;
+        .text-blk.subHeading {
+            text-align: center;
+            font-size: 16px;
+            line-height: 24px;
+            margin-bottom: 40px; /* Reduced margin */
+        }
+
+        .socialIcon {
+            width: 33px;
+            height: 33px;
+        }
+
+        .social-icons-container {
+            display: flex;
+            flex-direction: row;
+            align-items: flex-start;
+            justify-content: center; /* Centering the social icons */
+        }
+
+        .social-icon {
+            margin: 0 25px; /* Reduced margin */
+            cursor: pointer;
+        }
+
+        .social-icon:hover {
+            cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            .text-blk.heading {
+                font-size: 48px; /* Adjusted heading font size */
+                line-height: 58px;
+            }
+
+            .text-blk.subHeading {
+                font-size: 16px;
+                line-height: 22px;
+                margin-bottom: 30px; /* Adjusted margin */
+            }
+
+            .socialIcon {
+                width: 20px;
+                height: 20px;
+            }
+
+            .text-blk.subHeading {
+                line-height: 25px; /* Adjusted line height */
+            }
+
+            .text-blk.heading {
+                font-size: 28px; /* Adjusted heading font size */
+                line-height: 34px;
+                margin-bottom: 10px; /* Adjusted margin */
+            }
+
+            .social-icon {
+                margin: 0 15px; /* Adjusted margin */
+            }
+        }
+
+        @media (max-width: 500px) {
+            .responsive-container-block.bigContainer {
+                padding: 10px 20px;
+            }
+
+            .text-blk.heading {
+                font-size: 40px; /* Adjusted heading font size */
+                line-height: 48px;
+                margin-bottom: 10px; /* Adjusted margin */
+            }
+
+            .text-blk.subHeading {
+                font-size: 14px; /* Reduced subheading font size */
+                line-height: 20px;
+                margin-bottom: 20px; /* Adjusted margin */
+            }
+
+            .social-icons-container {
+                flex-wrap: wrap;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .text-blk.subHeading {
+                font-size: 14px; /* Adjusted subheading font size */
+                line-height: 20px;
+            }
+
+            .text-blk.heading {
+                font-size: 24px; /* Adjusted heading font size */
+                line-height: 28px;
+            }
+
+            .social-icon {
+                margin: 0 10px; /* Adjusted margin */
+            }
         }
     </style>
 </head>
 <body>
-    <header class="bg-primary text-white p-4">
-        <h1>About Us</h1>
-    </header>
-    <main class="container mt-4">
-
-        <p>At Savaari, we deliver and provide the highest quality and most delicious array
-            of premium nuts that can be enjoyed as a snack or given as gifts to friends and
-            family, truly being your go-to snack no matter what the occasion is!</p>
-
-        <p>We provide a variety of nuts that are not oil-fried and maintain their distinct
-            tastes, flavors, textures, and aromas.</p>
-
-        <p>Remarkable nuts don’t just taste great; they are loaded with proteins, fiber,
-            essential fats, antioxidants, and minerals, making them the ideal healthy snack,
-            which is what we always strive for at Savaari.</p>
-
-        <p>Our team is made up of talented professionals who bring a wealth of knowledge
-            and expertise to every project. We are committed to delivering exceptional
-            results and providing outstanding customer service to each and every one of our
-            clients.</p>
-    </main>
-    <footer class="bg-dark">
-        <p class="mb-0">© 2024 Savaari Nuts</p>
-    </footer>
-
-    <!-- Bootstrap JS and Popper.js (required for Bootstrap JavaScript components) -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<div class="responsive-container-block bigContainer">
+    <div class="responsive-container-block Container">
+        <p class="text-blk heading">
+            About Us
+        </p>
+        <p class="text-blk subHeading">
+            At <span class="highlight">Savaari</span>, we deliver and provide the highest quality and most delicious array of premium nuts that can be enjoyed as a snack or given as gifts to friends and family, truly being your go-to snack no matter what the occasion is!
+        </p>
+        <p class="text-blk subHeading">
+            We provide a variety of nuts that are not oil-fried and maintain their distinct tastes, flavors, textures, and aromas.
+        </p>
+        <p class="text-blk subHeading">
+            Remarkable nuts don’t just taste great; they are loaded with proteins, fiber, essential fats, antioxidants, and minerals, making them the ideal healthy snack, which is what we always strive for at <span class="highlight">Savaari</span>.
+        </p>
+        <p class="text-blk subHeading">
+            Our team is made up of talented professionals who bring a wealth of knowledge and expertise to every project. We are committed to delivering exceptional results and providing outstanding customer service to each and every one of our clients.
+        </p>
+        <div class="social-icons-container">
+            <a class="social-icon">
+                <img class="socialIcon image-block" src="https://workik-widget-assets.s3.amazonaws.com/widget-assets/images/bb33.png">
+            </a>
+            <a class="social-icon">
+                <img class="socialIcon image-block" src="https://workik-widget-assets.s3.amazonaws.com/widget-assets/images/bb34.png">
+            </a>
+            <a class="social-icon">
+                <img class="socialIcon image-block" src="https://workik-widget-assets.s3.amazonaws.com/widget-assets/images/bb35.png">
+            </a>
+            <a class="social-icon">
+                <img class="socialIcon image-block" src="https://workik-widget-assets.s3.amazonaws.com/widget-assets/images/bb36.png">
+            </a>
+        </div>
+    </div>
+</div>
 </body>
 </html>
