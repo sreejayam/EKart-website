@@ -36,3 +36,7 @@ def proDetail(request, c_slug, product_slug):
     return render(request, 'product.html', {'product': product})
 def about(request):
     return render(request,'about.html')
+
+
+
+

@@ -24,6 +24,8 @@ urlpatterns = [
     path('Ekartapp/', include('Ekartapp.urls')),
     path('search/', include('search_app.urls')),
     path('cart/', include('cart.urls')),
+    path('payments/', include('payments.urls')),
+
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL,
