@@ -134,29 +134,8 @@
   <body>
     <div class="main-block">
     <form action="{% url 'create_order' %}" method="POST">{% csrf_token %}
-      <h1>Creating order</h1>
-      <fieldset>
-        <legend>
-          <h3>Select Product</h3>
-        </legend>
 
-          <div class="gender" >
-                <input type="radio" value="p1" id="p1" name="product" />
-                <label for="p1" class="radio">Product 1 price 1000</label>
-              <br/>
-                <input type="radio" value="p2" id="p2" name="product" />
-                <label for="p2" class="radio">Product 2 price 2000</label>
-              <br/>
-                <input type="radio" value="p3" id="p3" name="product" />
-                <label for="p3" class="radio">Product 3 price 5000</label>
-              <br/>
-                <input type="radio" value="p4" id="p4" name="product" />
-                <label for="p4" class="radio">Product 4 price 10000</label>
-          </div>
 
-      </fieldset>
-      <fieldset>
-        <legend>
           <h3>Personal Details</h3>
         </legend>
         <div  class="personal-details">

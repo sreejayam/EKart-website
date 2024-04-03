@@ -2,64 +2,118 @@ from django.shortcuts import render
 from django.http import HttpResponse
 
 import razorpay
+from django.shortcuts import render, redirect, get_object_or_404
+from Ekartapp.models import Product
+from cart.models import *
+from django.core.exceptions import ObjectDoesNotExist
+
+
 client = razorpay.Client(auth=("rzp_test_dD3s7LqfVjjw7f", "j9yVuy7FQKOdoZit1N4jZimq"))
 
 
 def testing(request):
 
     return render(request, 'order.html', {})
+def _cart_id(request):
+    cart = request.session.session_key
+    if not cart:
+        cart = request.session.create()
+    return cart
+def cart_detail(request, total=0, counter=0, cart_items=None):
+    try:
+        cart = Cart.objects.get(cart_id=_cart_id(request))
+        cart_items = CartItem.objects.filter(cart=cart, active=True)
+        for cart_item in cart_items:
+            total += (cart_item.product.price * cart_item.quantity)
+            counter += cart_item.quantity
 
+    except ObjectDoesNotExist:
+        pass
+    return render(request, 'cart.html', dict(cart_items=cart_items, total=total, counter=counter))
+
+
+# def create_order(request, total=0, counter=0, cart_items=None):
+#     context = {}
+#     if request.method == 'POST':
+#         print("INSIDE Create Order!!!")
+#         name = request.POST.get('name')
+#         phone = request.POST.get('phone')
+#         email = request.POST.get('email')
+#         product = request.POST.get('product')
+#         cart = Cart.objects.get(cart_id=_cart_id(request))
+#         cart_items = CartItem.objects.filter(cart=cart, active=True)
+#         for cart_item in cart_items:
+#             total += (cart_item.product.price * cart_item.quantity)
+#             counter += cart_item.quantity
+#
+#         order_amount = float(total)  # Convert Decimal to float
+#
+#         order_currency = 'INR'
+#         order_receipt = 'order_rcptid_11'
+#         notes = {
+#             'Shipping address': 'Bommanahalli, Bangalore'}
+#
+#         # CREATING ORDER
+#         response = client.order.create(dict(amount=order_amount, currency=order_currency, receipt=order_receipt, notes=notes, payment_capture='0'))
+#         order_id = response['id']
+#         order_status = response['status']
+#
+#         if order_status == 'created':
+#             # Server data for user convenience
+#             context['product_id'] = product
+#             context['price'] = order_amount
+#             context['name'] = name
+#             context['phone'] = phone
+#             context['email'] = email
+#
+#             # data that'll be send to the razorpay for
+#             context['order_id'] = order_id
+#
+#             return render(request, 'confirm_order.html', context)
+#
+#     return HttpResponse('<h1>Error in create order function</h1>')
 
 def create_order(request):
-
-    context = {}
     if request.method == 'POST':
-        print("INSIDE Create Order!!!")
         name = request.POST.get('name')
         phone = request.POST.get('phone')
         email = request.POST.get('email')
-        product = request.POST.get('product')
 
+        cart = Cart.objects.get(cart_id=_cart_id(request))
+        cart_items = CartItem.objects.filter(cart=cart, active=True)
 
-        order_amount = 0
-        if product == 'p1':
-            order_amount = 1000
-        elif product == 'p2':
-            order_amount = 2000
-        elif product == 'p3':
-            order_amount = 5000
-        elif product == 'p4':
-            order_amount = 10000
+        total_amount = 0
+        for cart_item in cart_items:
+            total_amount += (cart_item.product.price * cart_item.quantity)
+
+        total_amount_in_paisa = int(total_amount * 100)  # Convert to smallest currency unit
 
         order_currency = 'INR'
         order_receipt = 'order_rcptid_11'
-        notes = {
-            'Shipping address': 'Bommanahalli, Bangalore'}
+        notes = {'Shipping address': 'Bommanahalli, Bangalore'}
 
-        # CREAING ORDER
-        response = client.order.create(dict(amount=order_amount, currency=order_currency, receipt=order_receipt, notes=notes, payment_capture='0'))
+        # CREATING ORDER
+        response = client.order.create(
+            dict(amount=total_amount_in_paisa, currency=order_currency, receipt=order_receipt, notes=notes,
+                 payment_capture='0'))
         order_id = response['id']
         order_status = response['status']
 
-        if order_status=='created':
-
-            # Server data for user convinience
-            context['product_id'] = product
-            context['price'] = order_amount
-            context['name'] = name
-            context['phone'] = phone
-            context['email'] = email
-
-            # data that'll be send to the razorpay for
-            context['order_id'] = order_id
-
-
+        if order_status == 'created':
+            context = {
+                'product_id': cart_items[0].product.id if cart_items else None,
+                'price': total_amount,
+                'name': name,
+                'phone': phone,
+                'email': email,
+                'order_id': order_id
+            }
             return render(request, 'confirm_order.html', context)
+        else:
+            return HttpResponse('<h1>Error in create order function</h1>')
 
-
-        # print('\n\n\nresponse: ',response, type(response))
-    return HttpResponse('<h1>Error in  create order function</h1>')
-
+    else:
+        return HttpResponse('<h1>Invalid request method</h1>')
 
 
 def payment_status(request):
