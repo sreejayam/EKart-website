@@ -1,12 +1,11 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container-fluid">
-
+    <a class="navbar-brand" href="#"><i class="uil uil-home"></i>MyWebsite</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-
         <li class="nav-item">
           <a class="nav-link" href="#"><i class="uil uil-home"></i>HOME</a>
         </li>
@@ -29,11 +28,15 @@
           <a class="nav-link" href="{% url 'cart:cart_detail' %}" ><i class="uil uil-shopping-cart-alt"></i>({{item_count}}) </a>
         </li>
         {% endif %}
+        <!-- Logout link -->
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'logout' %}"><i class="uil uil-logout"></i>LOGOUT</a>
+        </li>
       </ul>
       <form class="d-flex" action="{% url 'search_app:SearchResult' %}" method="get">
         {% csrf_token %}
         <input class="form-control me-2" type="search" placeholder="Search" name="q" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit"><i class="uil uil-search"></i></button>
+        <button class="btn btn-outline-primary" type="submit"><i class="uil uil-search"></i></button>
       </form>
     </div>
   </div>

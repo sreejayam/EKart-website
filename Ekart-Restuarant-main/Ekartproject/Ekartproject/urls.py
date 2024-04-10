@@ -19,7 +19,14 @@ from django.urls import path, include
 
 from django.conf.urls.static import static
 
+from . import views
+
 urlpatterns = [
+    path('', views.registerPage, name="register"),
+	path('login/', views.loginPage, name="login"),
+	path('logout/', views.logoutUser, name="logout"),
+
+
     path('admin/', admin.site.urls),
     path('Ekartapp/', include('Ekartapp.urls')),
     path('search/', include('search_app.urls')),

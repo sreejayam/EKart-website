@@ -7,14 +7,37 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <title>Your Title</title>
+    <style>
+        .navbar {
+            padding: 15px; /* Decreased padding */
+            background-color: #ff6666; /* Red background color */
+        }
+
+        .navbar-brand img {
+            transition: all 0.3s ease; /* Add transition effect for smoother resizing */
+            border-radius: 50%; /* Make the logo circular */
+            border: 2px solid #ffcc00; /* Yellow border */
+        }
+
+        .navbar-brand:hover img {
+            transform: scale(1.1); /* Increase logo size on hover */
+        }
+
+        .navbar-text {
+            color: #ffcc00; /* Yellow text color */
+            font-weight: bold;
+            font-size: 16px; /* Decreased font size */
+        }
+    </style>
 </head>
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar navbar-expand-lg navbar-dark">
     <div class="container">
         <a class="navbar-brand" href="{% url 'Ekartapp:allProdCat' %}">
-            <img src="{% static 'img/logo3.png' %}" alt="log img" width="50" height="50" class="d-inline-block align-top">
+            <img src="{% static 'img/logo3.png' %}" alt="log img" width="80" height="80" class="d-inline-block align-top">
         </a>
+        <span class="navbar-text">Your Ride to Premium Quality Nuts</span>
     </div>
 </nav>
 
