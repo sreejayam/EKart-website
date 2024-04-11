@@ -32,52 +32,58 @@ def cart_detail(request, total=0, counter=0, cart_items=None):
     return render(request, 'cart.html', dict(cart_items=cart_items, total=total, counter=counter))
 
 
-# def create_order(request, total=0, counter=0, cart_items=None):
-#     context = {}
+# def create_order(request):
 #     if request.method == 'POST':
-#         print("INSIDE Create Order!!!")
 #         name = request.POST.get('name')
 #         phone = request.POST.get('phone')
 #         email = request.POST.get('email')
-#         product = request.POST.get('product')
+#
 #         cart = Cart.objects.get(cart_id=_cart_id(request))
 #         cart_items = CartItem.objects.filter(cart=cart, active=True)
-#         for cart_item in cart_items:
-#             total += (cart_item.product.price * cart_item.quantity)
-#             counter += cart_item.quantity
 #
-#         order_amount = float(total)  # Convert Decimal to float
+#         total_amount = 0
+#         for cart_item in cart_items:
+#             total_amount += (cart_item.product.price * cart_item.quantity)
+#
+#         total_amount_in_paisa = int(total_amount * 100)  # Convert to smallest currency unit
 #
 #         order_currency = 'INR'
 #         order_receipt = 'order_rcptid_11'
-#         notes = {
-#             'Shipping address': 'Bommanahalli, Bangalore'}
+#         notes = {'Shipping address': 'Bommanahalli, Bangalore'}
 #
 #         # CREATING ORDER
-#         response = client.order.create(dict(amount=order_amount, currency=order_currency, receipt=order_receipt, notes=notes, payment_capture='0'))
+#         response = client.order.create(
+#             dict(amount=total_amount_in_paisa, currency=order_currency, receipt=order_receipt, notes=notes,
+#                  payment_capture='0'))
 #         order_id = response['id']
 #         order_status = response['status']
 #
 #         if order_status == 'created':
-#             # Server data for user convenience
-#             context['product_id'] = product
-#             context['price'] = order_amount
-#             context['name'] = name
-#             context['phone'] = phone
-#             context['email'] = email
-#
-#             # data that'll be send to the razorpay for
-#             context['order_id'] = order_id
-#
+#             context = {
+#                 'product_id': cart_items[0].product.id if cart_items else None,
+#                 'price': total_amount,
+#                 'name': name,
+#                 'phone': phone,
+#                 'email': email,
+#                 'order_id': order_id
+#             }
 #             return render(request, 'confirm_order.html', context)
+#         else:
+#             return HttpResponse('<h1>Error in create order function</h1>')
 #
-#     return HttpResponse('<h1>Error in create order function</h1>')
-
+#     else:
+#         return HttpResponse('<h1>Invalid request method</h1>')
+#
 def create_order(request):
     if request.method == 'POST':
         name = request.POST.get('name')
         phone = request.POST.get('phone')
         email = request.POST.get('email')
+        address1 = request.POST.get('address1')
+        address2 = request.POST.get('address2')
+        city = request.POST.get('city')
+        state = request.POST.get('state')
+        pincode = request.POST.get('pincode')
 
         cart = Cart.objects.get(cart_id=_cart_id(request))
         cart_items = CartItem.objects.filter(cart=cart, active=True)
@@ -90,7 +96,9 @@ def create_order(request):
 
         order_currency = 'INR'
         order_receipt = 'order_rcptid_11'
-        notes = {'Shipping address': 'Bommanahalli, Bangalore'}
+        notes = {
+            'Shipping address': f"{address1}, {address2}, {city}, {state}, {pincode}"
+        }
 
         # CREATING ORDER
         response = client.order.create(
@@ -105,6 +113,11 @@ def create_order(request):
                 'price': total_amount,
                 'name': name,
                 'phone': phone,
+                'address1':address1,
+                'address2':address2,
+                'city':city,
+                'state':state,
+                'pincode':pincode,
                 'email': email,
                 'order_id': order_id
             }
@@ -114,8 +127,6 @@ def create_order(request):
 
     else:
         return HttpResponse('<h1>Invalid request method</h1>')
-
-
 def payment_status(request):
 
     response = request.POST

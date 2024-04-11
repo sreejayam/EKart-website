@@ -41,22 +41,7 @@
         </li>
         {% endif %}
       </ul>
-      <ul class="navbar-nav ms-auto">
-        <!-- Accounts dropdown -->
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="accountsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            <i class="uil uil-user"></i> Accounts
-          </a>
-          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="accountsDropdown">
-            {% if user.is_authenticated %}
-            <li><a class="dropdown-item" href="{% url 'logout' %}"><i class="uil uil-logout"></i> Logout</a></li>
-            {% else %}
-            <li><a class="dropdown-item" href="{% url 'login' %}"><i class="uil uil-login"></i> Login</a></li>
-            <li><a class="dropdown-item" href="{% url 'logout' %}"><i class="uil uil-user-plus"></i> Logout</a></li>
-            {% endif %}
-          </ul>
-        </li>
-      </ul>
+
       <form class="d-flex" action="{% url 'search_app:SearchResult' %}" method="get">
         {% csrf_token %}
         <input class="form-control me-2" type="search" placeholder="Search" name="q" aria-label="Search">
