@@ -57,7 +57,7 @@ def logoutUser(request):
     return redirect('login')
 
 
-@login_required(login_url='login')
+# @login_required(login_url='login')
 def home(request, c_slug=None):
     c_page = None
     products_list = None
