@@ -82,7 +82,7 @@
 </head>
 <body>
 <nav class="navbar navbar-light bg-light">
-    <a class="navbar-brand" href="#">login to your account before purchase</a>
+    <a class="navbar-brand" href="#"></a>
     <ul class="navbar-nav ml-auto">
         <li class="nav-item">
             <a class="nav-link" href="{% url 'login' %}"><i class="uil uil-user"></i> Register</a>
@@ -131,7 +131,7 @@
                 </div>
             </div>
         </div>
-        <div id="notification" class="notification">Please fill in all required fields or register first.</div>
+        <div id="notification" class="notification">1.Please fill in all the required fields (*)  OR <br> 2.If you are not a registered user <a href="{% url 'register' %}">Register</a>first.Also,make sure to <a href="{% url 'login' %}">Login </a> before placing the order</br></div>
         <button type="submit" id="submitBtn" class="btn btn-primary">Create Order</button>
     </form>
 </div>
