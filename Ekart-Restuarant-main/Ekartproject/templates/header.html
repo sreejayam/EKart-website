@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Title</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <title>Your Title</title>
     <style>
         .navbar {
             padding: 15px; /* Decreased padding */
@@ -28,20 +28,83 @@
             font-weight: bold;
             font-size: 16px; /* Decreased font size */
         }
+
+        /* Custom CSS to change dropdown background color to black */
+        .dropdown-menu {
+            background-color: black;
+        }
+
+        /* Custom CSS to change dropdown text color to white */
+        .dropdown-menu a {
+            color: white;
+        }
+
+        .hello-msg {
+            color: white; /* Set text color to white */
+            margin-right: 10px; /* Added margin to space out the links */
+            white-space: nowrap;
+        }
+
+        /* Adjusting spacing for better layout */
+        .navbar-nav {
+            margin-right: auto; /* Push the search form to the right */
+        }
+
+        .form-inline {
+            margin-left: auto; /* Push the search form to the right */
+        }
     </style>
 </head>
 <body>
 
 <nav class="navbar navbar-expand-lg navbar-dark">
-    <div class="container">
-        <a class="navbar-brand" href="{% url 'Ekartapp:allProdCat' %}">
+    <div class="container-fluid"> <!-- Changed container class to container-fluid for full width -->
+        <a class="navbar-brand mb-2" href="{% url 'Ekartapp:allProdCat' %}">
             <img src="{% static 'img/logo3.png' %}" alt="log img" width="80" height="80" class="d-inline-block align-top">
         </a>
-        <span class="navbar-text">Your Ride to Premium Quality Nuts</span>
-    </div>
-</nav>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" href="#"><i class="uil uil-home"></i> HOME</a>
+                </li>
+                <li class="nav-item dropdown {% if 'Ekartapp' in request.path %} active {% endif %}">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="uil uil-shopping-bag"></i> SHOP
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="{% url 'Ekartapp:allProdCat' %}">All Products</a></li>
+                        {% for cat in links %}
+                            <li><a class="dropdown-item" href="{{ cat.get_url }}">{{ cat.name }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'Ekartapp:aboutus' %}"><i class="uil uil-info-circle"></i> ABOUT US</a>
+                </li>
+                <!-- Register link -->
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'login' %}"><i class="uil uil-user"></i> LOGIN</a>
+                </li>
+                {% if item_count > 0 %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'cart:cart_detail' %}" ><i class="uil uil-shopping-cart-alt"></i> ({{ item_count }})</a>
+                </li>
+                {% endif %}
+            </ul>
 
-<!-- Your other content goes here -->
+            <form class="form-inline" action="{% url 'search_app:SearchResult' %}" method="get">
+                {% csrf_token %}
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" name="q" aria-label="Search">
+                <button class="btn btn-outline-primary my-2 my-sm-0" type="submit"><i class="uil uil-search"></i></button>
+            </form>
+        </div>
+    </div>
+    <span class="hello-msg">Hi {{request.user}}</span>
+    <span><a class="hello-msg" href="{% url 'logout' %}">  Logout</a></span>
+</nav>
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>

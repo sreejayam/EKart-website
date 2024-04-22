@@ -1,3 +1,160 @@
+<!--<!DOCTYPE html>-->
+<!--<html>-->
+<!--<head>-->
+<!--    <title>Account registration form</title>-->
+<!--    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">-->
+<!--    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600' rel='stylesheet' type='text/css'>-->
+<!--    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">-->
+<!--    <style>-->
+<!--        html, body {-->
+<!--            min-height: 100%;-->
+<!--        }-->
+
+<!--        body, div, form, input, select, p {-->
+<!--            padding: 0;-->
+<!--            margin: 0;-->
+<!--            outline: none;-->
+<!--            font-family: Roboto, Arial, sans-serif;-->
+<!--            font-size: 14px;-->
+<!--            color: #666;-->
+<!--        }-->
+
+<!--        h1 {-->
+<!--            margin: 0;-->
+<!--            font-weight: 400;-->
+<!--        }-->
+
+<!--        h3 {-->
+<!--            margin: 12px 0;-->
+<!--            color: #8ebf42;-->
+<!--        }-->
+
+<!--        .main-block {-->
+<!--            display: flex;-->
+<!--            justify-content: center;-->
+<!--            align-items: center;-->
+<!--            background: #fff;-->
+<!--        }-->
+
+<!--        form {-->
+<!--            width: 100%;-->
+<!--            padding: 20px;-->
+<!--        }-->
+
+<!--        fieldset {-->
+<!--            border: none;-->
+<!--            border-top: 1px solid #8ebf42;-->
+<!--        }-->
+
+<!--        .personal-details > div {-->
+<!--            margin-bottom: 15px;-->
+<!--        }-->
+
+<!--        label {-->
+<!--            padding: 0 5px;-->
+<!--            text-align: right;-->
+<!--            vertical-align: middle;-->
+<!--        }-->
+
+<!--        input {-->
+<!--            padding: 8px;-->
+<!--            vertical-align: middle;-->
+<!--            border: 1px solid #ced4da;-->
+<!--            border-radius: 4px;-->
+<!--        }-->
+
+<!--        .btn-primary {-->
+<!--            background-color: #8ebf42;-->
+<!--            border-color: #8ebf42;-->
+<!--        }-->
+
+<!--        .btn-primary:hover {-->
+<!--            background-color: #82b534;-->
+<!--            border-color: #82b534;-->
+<!--        }-->
+
+<!--        .notification {-->
+<!--            color: red;-->
+<!--            font-size: 12px;-->
+<!--            display: none;-->
+<!--        }-->
+<!--    </style>-->
+<!--</head>-->
+<!--<body>-->
+<!--<nav class="navbar navbar-light bg-light">-->
+<!--    <a class="navbar-brand" href="#">login to your account before purchase</a>-->
+<!--    <ul class="navbar-nav ml-auto">-->
+<!--        <li class="nav-item">-->
+<!--            <a class="nav-link" href="{% url 'login' %}"><i class="uil uil-user"></i> Register</a>-->
+<!--        </li>-->
+<!--    </ul>-->
+<!--</nav>-->
+
+<!--<div class="main-block">-->
+<!--    <form id="registrationForm" action="{% url 'create_order' %}" method="POST" class="col-lg-6 col-md-8 col-sm-10">-->
+<!--        {% csrf_token %}-->
+
+<!--        <h3>Personal Details</h3>-->
+<!--        <div class="personal-details">-->
+<!--            <div class="form-group">-->
+<!--                <label for="name">Name*</label>-->
+<!--                <input type="text" class="form-control" id="name" name="name" value="{{ request.user }}" readonly>-->
+<!--            </div>-->
+<!--            <div class="form-group">-->
+<!--                <label for="phone">Phone*</label>-->
+<!--                <input type="text" class="form-control" id="phone" name="phone" value="{{ phone }}" required>-->
+<!--            </div>-->
+<!--            <div class="form-group">-->
+<!--                <label for="email">Email*</label>-->
+<!--                <input type="email" class="form-control" id="email" name="email" value="{{ request.user.email }}" readonly>-->
+<!--            </div>-->
+<!--            <div class="form-group">-->
+<!--                <label for="address1">Address 1*</label>-->
+<!--                <input type="text" class="form-control" id="address1" name="address1" value="{{ address1 }}" required>-->
+<!--            </div>-->
+<!--            <div class="form-group">-->
+<!--                <label for="address2">Address 2</label>-->
+<!--                <input type="text" class="form-control" id="address2" name="address2" value="{{ address2 }}">-->
+<!--            </div>-->
+<!--            <div class="form-row">-->
+<!--                <div class="form-group col-md-6">-->
+<!--                    <label for="city">City*</label>-->
+<!--                    <input type="text" class="form-control" id="city" name="city" value="{{ city }}" required>-->
+<!--                </div>-->
+<!--                <div class="form-group col-md-4">-->
+<!--                    <label for="state">State*</label>-->
+<!--                    <input type="text" class="form-control" id="state" name="state" value="{{ state }}" required>-->
+<!--                </div>-->
+<!--                <div class="form-group col-md-2">-->
+<!--                    <label for="pincode">Pincode*</label>-->
+<!--                    <input type="text" class="form-control" id="pincode" name="pincode" value="{{ pincode }}" required>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div id="notification" class="notification">Please fill in all required fields or register first.</div>-->
+<!--        <button type="submit" id="submitBtn" class="btn btn-primary">Create Order</button>-->
+<!--    </form>-->
+<!--</div>-->
+
+<!--<script>-->
+<!--    document.getElementById('submitBtn').addEventListener('click', function(event) {-->
+<!--        var inputs = document.querySelectorAll('#registrationForm input[required]');-->
+<!--        var email = document.getElementById('email').value;-->
+<!--        var empty = false;-->
+<!--        inputs.forEach(function(input) {-->
+<!--            if (!input.value) {-->
+<!--                empty = true;-->
+<!--            }-->
+<!--        });-->
+<!--        if (empty || !email) {-->
+<!--            event.preventDefault();-->
+<!--            document.getElementById('notification').style.display = 'block';-->
+<!--        }-->
+<!--    });-->
+<!--</script>-->
+
+<!--</body>-->
+<!--</html>-->
 <!DOCTYPE html>
 <html>
 <head>
@@ -82,7 +239,7 @@
 </head>
 <body>
 <nav class="navbar navbar-light bg-light">
-    <a class="navbar-brand" href="#">login to your account before purchase</a>
+    <a class="navbar-brand" href="#"></a>
     <ul class="navbar-nav ml-auto">
         <li class="nav-item">
             <a class="nav-link" href="{% url 'login' %}"><i class="uil uil-user"></i> Register</a>
@@ -131,7 +288,7 @@
                 </div>
             </div>
         </div>
-        <div id="notification" class="notification">Please fill in all required fields or register first.</div>
+        <div id="notification" class="notification">1.Please fill in all the required fields (*)  OR <br> 2.If you are not a registered user <a href="{% url 'register' %}">Register</a>first.Also,make sure to <a href="{% url 'login' %}">Login </a> before placing the order</br></div>
         <button type="submit" id="submitBtn" class="btn btn-primary">Create Order</button>
     </form>
 </div>

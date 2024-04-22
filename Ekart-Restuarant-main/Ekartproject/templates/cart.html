@@ -1,14 +1,12 @@
+
 {% extends 'base.html' %}
 {% load static %}
-
 {% block metadescription %}
 This is the cart page. Proceed to review your items and place the order
 {% endblock %}
-
 {% block title %}
     Cart - connect
 {% endblock %}
-
 {% block content %}
 {% if not cart_items %}
 <div>
@@ -32,75 +30,97 @@ This is the cart page. Proceed to review your items and place the order
         </h1>
         <br>
     </div>
-    <div class="row mx_auto">
-        <div class="col-12 col-sm-12 col-md-12 col-lg-6 text-center">
-            <table class="table my_custom_table">
-                <thead class="my_custom_thead">
-                <tr>
-                    <th colspan="5">
-                        Your items
-                    </th>
-                </tr>
-                </thead>
-                <tbody>
-                {% for cart_item in cart_items %}
-                <tr>
-                    <td>
-                        <a href="{{ cart_item.product.get_absolute_url }}"><img src="{{ cart_item.product.image.url }}" alt="" style="width:100px;height:100px;" class="float-left rounded custom_image"> </a>
-                    </td>
-                    <td class="text-left">
-                        {{ cart_item.product.name }}
-                        <br>
-                        SKU: {{ cart_item.product.id }}
-                        <br>
-                        Price: RS.  {{ cart_item.product.price }}
-                        <br>
-                        Qty:  {{ cart_item.quantity }} x RS. {{ cart_item.product.price }}
-                    </td>
-                    <td>
-                        $  {{ cart_item.sub_total }}
-                    </td>
-                    <td>
-                        {% if cart_item.quantity < cart_item.product.stock %}
-                            <a href="{% url 'cart:add_cart' cart_item.product.id %}" class="custom_a"><i class="uil uil-plus-circle"></i></a>
-                            &nbsp;<a href="{% url 'cart:cart_remove' cart_item.product.id %}" class="custom_a"><i class="uil uil-minus-circle"></i></a>
-                            &nbsp;<a href="{% url 'cart:full_remove' cart_item.product.id %}" class="custom_icon"><i class="uil uil-trash-alt"></i></a>
-                        {% else %}
-                            <span>Out of stock</span>
-                        {% endif %}
-                    </td>
-                </tr>
-                {% endfor %}
-                </tbody>
-            </table>
-        </div>
-        <div class="col-12 col-sm-12 col-md-12 col-lg-6 text-center">
-            <table class="table my_custom_table">
-                <thead class="my_custom_thead">
-                <tr>
-                    <th>
-                        Checkout
-                    </th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td>
-                        Please review your cart items before proceeding with order payment.
-                    </td>
-                </tr>
-                <tr>
-                    <td class="text-left">
-                        Your total is: <strong>{{ total }}</strong>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
-            <div class="mx-auto">
-                <a href="/payments/" class="btn btn-warning btn-block my_custom_button" style="width:100px; height:40px; margin-top:10px">Payment</a>
-            </div>
-        </div>
+<div class="row mx_auto">
+    <div class="col-12 col-sm-12 col-md-12 col-lg-6 text-center">
+        <table class="table my_custom_table">
+            <thead class="my_custom_thead">
+            <tr>
+                <th colspan="5">
+                    Your items
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for cart_item in cart_items %}
+            <tr>
+                <td>
+                    <a href="{{ cart_item.product.get_absolute_url }}"><img src="{{ cart_item.product.image.url }}" alt="" style="width:100px;height:100px;" class="float-left rounded custom_image"> </a>
+                </td>
+                <td class="text-lef">
+                    {{ cart_item.product.name }}
+                    <br>
+                    SKU: {{ cart_item.product.id }}
+                    <br>
+                    Price: RS.  {{ cart_item.product.price }}
+                    <br>
+                    Qty :  {{ cart_item.quantity }} x RS. {{ cart_item }}
+                </td>
+                <td>
+                    $  {{ cart_item.sub_total }}
+                </td>
+                {% if cart_item.quantity < cart_item.product.stock %}
+                <td>
+                    <a href="{% url 'cart:add_cart' cart_item.product.id %}" class="custom_a"><i class="uil uil-plus-circle"></i></a>
+                    &nbsp;<a href="{% url 'cart:cart_remove' cart_item.product.id %}" class="custom_a"><i class="uil uil-minus-circle"></i></a>
+                    &nbsp;<a href="{% url 'cart:full_remove' cart_item.product.id %}" class="custom_icon"><i class="uil uil-trash-alt"></i></a>
+                </td>
+                {% else %}
+                <td>
+                    <a href="{% url 'cart:add_cart' cart_item.product.id %}" class="custom_a"><i class="uil uil-plus-circle"></i></a>
+                    &nbsp;<a href="{% url 'cart:cart_remove' cart_item.product.id %}" class="custom_a"><i class="uil uil-minus-circle"></i></a>
+                    &nbsp;<a href="{% url 'cart:full_remove' cart_item.product.id %}" class="custom_icon"><i class="uil uil-trash-alt"></i></a>
+                </td>
+                {% endif %}
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
     </div>
+<div class="col-12 col-sm-12 col-md-12 col-lg-6 text-center">
+    <table class="table my_custom_table">
+        <thead class="my_custom_thead">
+        <tr>
+            <th>
+                Checkout
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>
+                Please review your cart items before proceeding with the order payment.
+            </td>
+        </tr>
+        <tr>
+            <td class="text-left">
+                Your total is: <strong>{{ total }}</strong>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+<div class="mx-auto">
+    <a href="payment" class="btn btn-secondary btn-block my_custom_button" style="width:100px; height:40px;">Continue</a>
+    <button id="payment" class="btn btn-warning btn-block my_custom_button" style="width:100px; height:40px; margin-top:10px;">Payment</button>
 </div>
+</div>
+</div>
+</div>
+
+<script>
+    document.getElementById("payment").addEventListener("click", function() {
+        // Check if the user is logged in
+        var isLoggedIn = true; // Replace this with the actual logic to check if the user is logged in
+
+        if (isLoggedIn) {
+            // If the user is logged in, redirect to the payment page
+            window.location.href = "/payments/"; // Change "/payments/payment.html" to the actual URL of your payment page
+        } else {
+            // If the user is not logged in, redirect to the login page
+            window.location.href = "{% url 'login' %}"; // Change "{% url 'login' %}" to the actual URL of your login page
+        }
+    });
+</script>
+
+
 {% endif %}
 {% endblock %}

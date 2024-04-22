@@ -22,9 +22,28 @@ class Category(models.Model):
 
 
 class Product(models.Model):
+    PACKET_CHOICES = [
+        ('Pillow Pouch', 'Pillow Pouch'),
+        ('Standup Pouch', 'Standup Pouch'),
+        ('Pouch', 'Pouch'),
+        ('Bottle', 'Bottle'),
+        ('Box', 'Box'),
+    ]
+
+    GRAMS_CHOICES = [
+        (20, '20g'),
+        (60, '60g'),
+        (130, '130g'),
+        (150, '150g'),
+        (300, '300g'),
+        (400, '400g'),
+    ]
+
     name = models.CharField(max_length=250, unique=True)
     slug = models.SlugField(max_length=250, unique=True)
     description = models.TextField(blank=True)
+    packet = models.CharField(max_length=20, choices=PACKET_CHOICES)
+    grams = models.IntegerField(choices=GRAMS_CHOICES)
     price = models.DecimalField(max_digits=10, decimal_places=2)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     image = models.ImageField(upload_to='product', blank=True)
