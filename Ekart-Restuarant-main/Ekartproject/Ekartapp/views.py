@@ -1,6 +1,6 @@
 from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404
-from .models import Category, Product
+from .models import Category, Product, PacketSize
 from django.core.paginator import Paginator, EmptyPage, InvalidPage
 
 
@@ -28,15 +28,20 @@ def allProdCat(request, c_slug=None):
     return render(request, "category.html", {'category': c_page, 'products': products})
 
 
-def proDetail(request, c_slug, product_slug):
-    try:
-        product = Product.objects.get(category__slug=c_slug, slug=product_slug)
-    except Exception as e:
-        raise e
-    return render(request, 'product.html', {'product': product})
+# def proDetail(request, c_slug, product_slug):
+#     try:
+#         product = Product.objects.get(category__slug=c_slug, slug=product_slug)
+#     except Exception as e:
+#         raise e
+#     return render(request, 'product.html', {'product': product})
 def about(request):
     return render(request,'about.html')
 
 
-
-
+def proDetail(request, c_slug, product_slug):
+    try:
+        product = Product.objects.get(category__slug=c_slug, slug=product_slug)
+        packet_sizes = PacketSize.objects.filter(product=product)
+    except Exception as e:
+        raise e
+    return render(request, 'product.html', {'product': product, 'packet_sizes': packet_sizes})
