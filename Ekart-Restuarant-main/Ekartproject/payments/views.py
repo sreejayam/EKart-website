@@ -92,6 +92,10 @@ def create_order(request):
         for cart_item in cart_items:
             total_amount += (cart_item.product.price * cart_item.quantity)
 
+        # Adding shipping charge if total is less than 500
+        if total_amount < 500:
+            total_amount += 50  # Adding shipping charge of Rs. 50
+
         total_amount_in_paisa = int(total_amount * 100)  # Convert to smallest currency unit
 
         order_currency = 'INR'
@@ -113,11 +117,11 @@ def create_order(request):
                 'price': total_amount,
                 'name': name,
                 'phone': phone,
-                'address1':address1,
-                'address2':address2,
-                'city':city,
-                'state':state,
-                'pincode':pincode,
+                'address1': address1,
+                'address2': address2,
+                'city': city,
+                'state': state,
+                'pincode': pincode,
                 'email': email,
                 'order_id': order_id
             }
@@ -127,6 +131,7 @@ def create_order(request):
 
     else:
         return HttpResponse('<h1>Invalid request method</h1>')
+
 def payment_status(request):
 
     response = request.POST
