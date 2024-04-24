@@ -21,11 +21,15 @@
             color: #333; /* Dark gray text color */
         }
 
+<!--        .navbar {-->
+<!--            background: linear-gradient(45deg, #2C3E50, #FD746C); /* Gradient background */-->
+<!--            box-shadow: 0 2px 4px rgba(0,0,0,0.2); /* Add subtle shadow */-->
+<!--        }-->
         .navbar {
-            background: linear-gradient(45deg, #2C3E50, #FD746C); /* Gradient background */
-            box-shadow: 0 2px 4px rgba(0,0,0,0.2); /* Add subtle shadow */
+            z-index: 1000;
+            background-color: black; /* Set background color to black */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Add subtle shadow */
         }
-
         .navbar-brand {
             font-size: 24px; /* Increase brand font size */
             font-weight: bold; /* Make brand text bold */
@@ -61,6 +65,22 @@
 
         .dropdown-item:hover {
             background-color: #2C3E50 !important; /* Darker blue background on hover */
+        }
+@media screen and (max-width: 768px) {
+        .nav-item {
+            letter-spacing: .2em;
+            font-size: 5px;
+            text-transform: uppercase;
+
+            background-color:rgba(139, 0, 0, 0.5); /* Blood red background color */
+            text-align: justify; /* Align text to the right */
+        }
+        .hello-msg {
+            color: black; /* Set text color to white */
+            margin-right: 10px; /* Added margin to space out the links */
+            white-space: nowrap;
+        }
+
         }
 
         /* Add more custom styles as needed */

@@ -8,15 +8,19 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <style>
+<!--        .navbar {-->
+<!--            padding: 10px; /* Decreased padding */-->
+<!--            background-color: #ff6666; /* Red background color */-->
+<!--        }-->
         .navbar {
-            padding: 15px; /* Decreased padding */
-            background-color: #ff6666; /* Red background color */
+            padding: 1px 10px; /* Decreased padding */
+            background-color: #8B0000;/* Changed background color to bluedark */
+            height: 60px; /* Decreased height by half */
         }
-
         .navbar-brand img {
             transition: all 0.3s ease; /* Add transition effect for smoother resizing */
             border-radius: 50%; /* Make the logo circular */
-            border: 2px solid #ffcc00; /* Yellow border */
+            border: 0.2px solid #ffcc00; /* Yellow border */
         }
 
         .navbar-brand:hover img {
@@ -53,14 +57,21 @@
         .form-inline {
             margin-left: auto; /* Push the search form to the right */
         }
+        .user-info {
+            background-color: #e97700; /* Set background color to black */
+            color: white; /* Set text color to white */
+            padding: 5px; /* Add padding for spacing */
+            text-align: right; /* right-align text */
+        }
+
     </style>
 </head>
 <body>
 
 <nav class="navbar navbar-expand-lg navbar-dark">
     <div class="container-fluid"> <!-- Changed container class to container-fluid for full width -->
-        <a class="navbar-brand mb-2" href="{% url 'Ekartapp:allProdCat' %}">
-            <img src="{% static 'img/logo3.png' %}" alt="log img" width="80" height="80" class="d-inline-block align-top">
+        <a class="navbar-brand mb-1" href="{% url 'Ekartapp:allProdCat' %}">
+            <img src="{% static 'img/logo3.png' %}" alt="log img" width="50" height="50" class="d-inline-block align-top">
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -68,7 +79,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link" href="#"><i class="uil uil-home"></i> HOME</a>
+                    <a class="nav-link" href="{% url 'Ekartapp:allProdCat' %}"><i class="uil uil-home"></i> HOME</a>
                 </li>
                 <li class="nav-item dropdown {% if 'Ekartapp' in request.path %} active {% endif %}">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -105,7 +116,9 @@
     <span class="hello-msg">Hi {{request.user}}</span>
     <span><a class="hello-msg" href="{% url 'logout' %}">  Logout</a></span>
 </nav>
-
+<!--<div class="user-info">-->
+<!--    Hi {{ request.user }} <a href="{% url 'logout' %}" class="hello-msg">Logout</a>-->
+<!--</div>-->
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>

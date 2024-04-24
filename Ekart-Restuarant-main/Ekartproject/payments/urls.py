@@ -9,3 +9,4 @@ urlpatterns = [
     path('payment_status', payment_status, name = 'payment_status'),
     # path('payments/', include('payments.urls')),
 ]
+

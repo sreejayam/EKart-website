@@ -18,48 +18,91 @@
 {% endblock %}
 
 {% block content %}
+<style>
+    .navbar {
+
+
+        z-index: 1000; /* Ensure the navbar appears on top of other elements */
+        width: 100%; /* Make the navbar span the entire width */
+    }
+
+@media screen and (max-width: 768px) {
+.nav-item {
+    letter-spacing: .2em;
+    font-size: 5px;
+    text-transform: uppercase;
+
+    background-color:rgba(139, 0, 0, 0.5); /* Blood red background color */
+    text-align: justify; /* Align text to the right */
+}
+
+}
+
+
+</style>
     {% if category %}
-        <div>
-            <div class="row my_row_class">
-                <div class="mx-auto">
-                    <p><a href="{% url 'Ekartapp:allProdCat' %}" style="color: black;">Taste Of Loves</a></p>
-                </div>
-            </div>
-        </div>
+<!--        <div>-->
+<!--            <div class="row my_row_class">-->
+<!--                <div class="mx-auto">-->
+<!--                    <p><a href="{% url 'Ekartapp:allProdCat' %}" style="color: black;">Taste Of Loves</a></p>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
     {% endif %}
-    <div class="ma_auto curved-bottom" style="background-color: #ffe6e6;">
+    <div class="ma_auto curved-bottom" style="background-color: #ffffff;">
         {% if category %}
-            <img class="my_image" style="width:100%; height:600px;" src="{{ category.image.url }}" alt="{{ category.name }}">
+            <img class="my_image" style="width:100%; height:100%;" src="{{ category.image.url }}" alt="{{ category.name }}">
         </div>
         <br>
         <div>
-            <h1 class="cat" style="font-size:30px; text-transform: uppercase; font-family:Times New Roman, Times, serif; text-align:center; color: black;">{{ category.name }}</h1>
-            <p class="text-justify" style="font-family:Lucida Sans; font-size:15px; color: black;">{{ category.description }}</p>
+            <h1 class="cat" style="font-size:30px; text-transform: uppercase; font-family:'Roboto Black', sans-serif; text-align:center; color: black;">{{ category.name }}</h1>
+            <p class="text-justify" style="font-family:'Roboto Light', sans-serif; font-size:15px; color: black;">{{ category.description }}</p>
         </div>
     {% else %}
-        <div class="curved-bottom">
-            <img class="my_image my_image_padding" src="{%  static 'img/card3.jpg' %}" alt="Our Products" width="100%" height="600px">
+          <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img class="d-block w-100" src="{%  static 'img/card3.jpg' %}" alt="First slide">
+            </div>
+            <div class="carousel-item">
+                <img class="d-block w-100" src="{%  static 'img/pic1.jpg' %}" alt="Second slide">
+            </div>
+            <div class="carousel-item">
+                <img class="d-block w-100" src="{%  static 'img/card1.jpeg' %}" alt="Third slide">
+            </div>
+            <!-- Add more carousel items as needed -->
         </div>
+        <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+        <br>
+        <br>
         <br>
         <div>
-            <h1 class="text-center my_title" style="font-size:30px; text-transform: uppercase; font-family:Times New Roman, Times, serif; color: black;">Taste Of Loves</h1>
-            <p class="text-justify" style="font-family:Lucida Sans; font-size:20px; color: black;">Restaurant menu descriptions play an essential role in the restaurant menu design. In most restaurants, descriptions are a list of all the ingredients that are used to prepare the dish. A stellar restaurant menu descriptions can be so much more than that!!!! </p>
+            <h1 class="my_title" style="font-size:30px; font-weight:bold; font-family:'Comic Sans MS', 'magilio'; color: #8B0000;text-align: left;">Select Your Favourite Flavour!</h1><br><br>
+<!--            <p class="text-justify" style="font-family:'Comic Sans MS', sans-serif; font-size:20px; color: black;">Restaurant menu descriptions play an essential role in the restaurant menu design. In most restaurants, descriptions are a list of all the ingredients that are used to prepare the dish. A stellar restaurant menu descriptions can be so much more than that!!!! </p>-->
         </div>
     {% endif %}
 
     <div class="container margin-bottom:10px">
         <div class="row mx_auto">
             {% for product in products.object_list %}
-            <div class="my_bottom_margin col-6 col-sm-6 col-md-6 col-lg-6" style="margin-bottom:25px;">
-                <div class="card text-center" style="width: 80%; border: none; overflow: hidden; background-color: #ffe6e6;">
+            <div class="my_bottom_margin col-lg-6 col-md-6 col-sm-12 col-xs-12" style="margin-bottom:25px;">
+                <div class="card text-center" style="width: 80%; border: none; overflow: hidden; background-color: #ffffff;">
                     <a href="{{ product.get_url }}" style="display: block;">
-                        <img class="my_image rounded-circle" style="width:100%; height:300px; object-fit: cover;" src="{{ product.image.url }}" alt="{{ product.name }}">
+                        <img class="my_image rounded-square" style="width:100%; height:100%; object-fit: cover;" src="{{ product.image.url }}" alt="{{ product.name }}">
                     </a>
                     <div class="card-body" style="padding-top:10px">
-                        <h4 class="head" style="font-size:20px; text-transform: uppercase; letter-spacing:.2em; font-family:Times New Roman, Times, serif; color: black;">{{ product.name }}</h4>
+                        <h4 class="head" style="font-size:12px;font-weight:bold;  text-transform: uppercase; letter-spacing:.2em; font-family:'magilio', magilio; color: black;">{{ product.name }}</h4>
 
-                        <p class="price" style="font-size:18px; font-weight:bold; color: black;">RS.{{ product.price }}</p>
-                        <p class="price" style="font-size:18px; font-weight:bold; color: black;">{{ product.grams }}gm</p>
+                        <p class="price" style="font-size:10px;  color: black;margin-bottom: 2px;">RS.{{ product.price }}</p>
+                        <p class="price" style="font-size:10px; color: black;margin-top: 0;">{{ product.grams }}gm</p>
 
 
 <!--                        <p class="price" style="font-size:18px; font-weight:bold; color: black;">RS.{{ product.price }}</p>-->

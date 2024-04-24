@@ -91,11 +91,35 @@ This is the cart page. Proceed to review your items and place the order
                 Please review your cart items before proceeding with the order payment.
             </td>
         </tr>
+        {% if total < 500 %}
         <tr>
             <td class="text-left">
-                Your total is: <strong>{{ total }}</strong>
+                Your total is        : <strong>Rs.{{ total }}</strong>
             </td>
         </tr>
+        <tr>
+            <td class="text-left">
+                Delivery Charge       : <strong>Rs. 50</strong>
+            </td>
+        </tr>
+        <tr>
+            <td class="text-left">
+                Total Amount to be paid: <strong>Rs.{{ total|add:50 }}</strong>
+            </td>
+        </tr>
+        {% else %}
+        <tr>
+            <td class="text-left">
+                Your total is        : <strong>Rs.{{ total }}</strong>
+            </td>
+        </tr>
+        <tr>
+            <td class="text-left">
+                Total Amount to be paid: <strong>Rs.{{ total }}</strong>
+            </td>
+        </tr>
+        {% endif %}
+
         </tbody>
     </table>
 <div class="mx-auto">
