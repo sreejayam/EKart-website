@@ -62,13 +62,13 @@
           <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <img class="d-block w-100" src="{%  static 'img/card3.jpg' %}" alt="First slide">
+                <img class="d-block w-100" src="{%  static 'img/3.jpg' %}" alt="First slide">
             </div>
             <div class="carousel-item">
-                <img class="d-block w-100" src="{%  static 'img/pic1.jpg' %}" alt="Second slide">
+                <img class="d-block w-100" src="{%  static 'img/4.jpg' %}" alt="Second slide">
             </div>
             <div class="carousel-item">
-                <img class="d-block w-100" src="{%  static 'img/card1.jpeg' %}" alt="Third slide">
+                <img class="d-block w-100" src="{%  static 'img/5.jpg' %}" alt="Third slide">
             </div>
             <!-- Add more carousel items as needed -->
         </div>
@@ -85,8 +85,15 @@
         <br>
         <br>
         <div>
-            <h1 class="my_title" style="font-size:30px; font-weight:bold; font-family:'Comic Sans MS', 'magilio'; color: #8B0000;text-align: left;">Select Your Favourite Flavour!</h1><br><br>
+            <h1 class="my_title" style="font-size:30px; font-weight:bold; font-family:'Segoe Script', 'magilio'; color: #8B0000;text-align: left;">Choose Your Favourite Flavour!</h1><br><br>
 <!--            <p class="text-justify" style="font-family:'Comic Sans MS', sans-serif; font-size:20px; color: black;">Restaurant menu descriptions play an essential role in the restaurant menu design. In most restaurants, descriptions are a list of all the ingredients that are used to prepare the dish. A stellar restaurant menu descriptions can be so much more than that!!!! </p>-->
+            <form class="form-inline" action="{% url 'search_app:SearchResult' %}" method="get">
+                {% csrf_token %}
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" name="q" aria-label="Search">
+                <button class="btn btn-outline-primary my-2 my-sm-0" type="submit"><i class="uil uil-search"></i></button>
+            </form>
+
+
         </div>
     {% endif %}
 
@@ -99,7 +106,7 @@
                         <img class="my_image rounded-square" style="width:100%; height:100%; object-fit: cover;" src="{{ product.image.url }}" alt="{{ product.name }}">
                     </a>
                     <div class="card-body" style="padding-top:10px">
-                        <h4 class="head" style="font-size:12px;font-weight:bold;  text-transform: uppercase; letter-spacing:.2em; font-family:'magilio', magilio; color: black;">{{ product.name }}</h4>
+                        <h4 class="head" style="font-size:12px;font-weight:bold;  text-transform: uppercase; letter-spacing:.2em; font-family:'magilio', 'magilio'; color: black;">{{ product.name }}</h4>
 
                         <p class="price" style="font-size:10px;  color: black;margin-bottom: 2px;">RS.{{ product.price }}</p>
                         <p class="price" style="font-size:10px; color: black;margin-top: 0;">{{ product.grams }}gm</p>

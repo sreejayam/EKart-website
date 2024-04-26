@@ -51,12 +51,12 @@ This is the cart page. Proceed to review your items and place the order
                     <br>
                     SKU: {{ cart_item.product.id }}
                     <br>
-                    Price: RS.  {{ cart_item.product.price }}
+                    Price: Rs.{{ cart_item.product.price }}
                     <br>
-                    Qty :  {{ cart_item.quantity }} x RS. {{ cart_item }}
+                    Qty : {{ cart_item.quantity }} x Rs. {{ cart_item.product.price }}
                 </td>
                 <td>
-                    $  {{ cart_item.sub_total }}
+                    ₹{{ cart_item.sub_total }}
                 </td>
                 {% if cart_item.quantity < cart_item.product.stock %}
                 <td>

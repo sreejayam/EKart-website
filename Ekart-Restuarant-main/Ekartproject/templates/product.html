@@ -21,7 +21,7 @@
 <div>
     <div class="container">
         <div class="text-center">
-            <img id="product-image" class="my_image" style="width:30%; height:300px;" src="{{ product.image.url }}" alt="{{ product.name }}">
+            <img id="product-image" class="my_image" style="width:100%; height:100%;" src="{{ product.image.url }}" alt="{{ product.name }}">
         </div>
     </div>
     <div>
@@ -38,12 +38,12 @@
             </div>
         </div>
     </div>
-    <div>
+    <div><br><br>
         <div>
-            <h1 class="prod" style="font-size:25px; text-transform: uppercase; font-family:Times New Roman, Times, serif;">{{ product.name }}</h1>
-            <p class="price" style="font-size:18px; font-weight:bold">RS.{{ product.price }}</p>
-            <p class="title" style="font-size:20px; text-transform: uppercase; font-family:Times New Roman, Times, serif;">Product Description</p>
-            <p class="para" style="font-family:italic small-caps bold 12px/30px Georgia, serif; font-size:15px">{{ product.description }}</p>
+            <h1 class="prod" style="font-size:12px;font-weight:bold; text-transform: uppercase; letter-spacing:.2em; font-family:'magilio', 'magilio'; color: black;">{{ product.name }}</h1>
+            <p class="price" style="font-size: 14px;">Rs.{{ product.price }}</p>
+            <p class="title" style="font-size:14px;  font-family:'magilio','magilio';color: black;">Product Description</p>
+            <p class="para" style="font-family:italic small-caps bold 12px/30px Georgia, serif; font-size:12px">{{ product.description }}</p>
             {% if product.stock <= 0 %}
                 <p><b><i>OUT OF STOCK</i></b></p>
             {% else %}

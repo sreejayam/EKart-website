@@ -35,12 +35,13 @@
 
         /* Custom CSS to change dropdown background color to black */
         .dropdown-menu {
-            background-color: black;
+            background-color: #ffffff;
+            color:black;
         }
 
         /* Custom CSS to change dropdown text color to white */
         .dropdown-menu a {
-            color: white;
+            color: black;
         }
 
         .hello-msg {
@@ -104,17 +105,26 @@
                     <a class="nav-link" href="{% url 'cart:cart_detail' %}" ><i class="uil uil-shopping-cart-alt"></i> ({{ item_count }})</a>
                 </li>
                 {% endif %}
+                <li class="nav-item">
+                    <div class="ml-auto"> <!-- This div pushes the content to the right and applies background color on mobile -->
+                        <span class="hello-msg hello-msg-mobile">Hi {{request.user}}</span>
+                        <span><a class="hello-msg hello-msg-mobile" href="{% url 'logout' %}">Logout</a></span>
+                    </div>
+                </li>
+
             </ul>
 
-            <form class="form-inline" action="{% url 'search_app:SearchResult' %}" method="get">
-                {% csrf_token %}
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" name="q" aria-label="Search">
-                <button class="btn btn-outline-primary my-2 my-sm-0" type="submit"><i class="uil uil-search"></i></button>
-            </form>
+
+
+<!--            <form class="form-inline" action="{% url 'search_app:SearchResult' %}" method="get">-->
+<!--                {% csrf_token %}-->
+<!--                <input class="form-control mr-sm-2" type="search" placeholder="Search" name="q" aria-label="Search">-->
+<!--                <button class="btn btn-outline-primary my-2 my-sm-0" type="submit"><i class="uil uil-search"></i></button>-->
+<!--            </form>-->
         </div>
     </div>
-    <span class="hello-msg">Hi {{request.user}}</span>
-    <span><a class="hello-msg" href="{% url 'logout' %}">  Logout</a></span>
+<!--    <span class="hello-msg">Hi {{request.user}}</span>-->
+<!--    <span><a class="hello-msg" href="{% url 'logout' %}">  Logout</a></span>-->
 </nav>
 <!--<div class="user-info">-->
 <!--    Hi {{ request.user }} <a href="{% url 'logout' %}" class="hello-msg">Logout</a>-->
