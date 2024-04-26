@@ -43,6 +43,9 @@
         .dropdown-menu a {
             color: black;
         }
+        .nav-item {
+        list-style: none; /* Remove the default bullet point */
+    }
 
         .hello-msg {
             color: white; /* Set text color to white */
@@ -64,6 +67,10 @@
             padding: 5px; /* Add padding for spacing */
             text-align: right; /* right-align text */
         }
+        .hello-msg-mobile {
+    text-transform: none; /* Ensure that text is not transformed to uppercase */
+}
+
 
     </style>
 </head>
@@ -105,16 +112,18 @@
                     <a class="nav-link" href="{% url 'cart:cart_detail' %}" ><i class="uil uil-shopping-cart-alt"></i> ({{ item_count }})</a>
                 </li>
                 {% endif %}
-                <li class="nav-item">
-                    <div class="ml-auto"> <!-- This div pushes the content to the right and applies background color on mobile -->
-                        <span class="hello-msg hello-msg-mobile">Hi {{request.user}}</span>
-                        <span><a class="hello-msg hello-msg-mobile" href="{% url 'logout' %}">Logout</a></span>
+
                     </div>
                 </li>
 
             </ul>
 
 
+<li class="nav-item">
+    <!-- This div pushes the content to the right and applies background color on mobile -->
+    <span class="hello-msg hello-msg-mobile">Hi {{request.user}}</span>
+    <span style="float: right;"><a class="hello-msg hello-msg-mobile" href="{% url 'logout' %}">Logout</a></span>
+</li>
 
 <!--            <form class="form-inline" action="{% url 'search_app:SearchResult' %}" method="get">-->
 <!--                {% csrf_token %}-->
