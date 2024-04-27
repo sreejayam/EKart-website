@@ -8,10 +8,6 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <style>
-<!--        .navbar {-->
-<!--            padding: 10px; /* Decreased padding */-->
-<!--            background-color: #ff6666; /* Red background color */-->
-<!--        }-->
         .navbar {
             padding: 1px 10px; /* Decreased padding */
             background-color: #8B0000;/* Changed background color to bluedark */
@@ -22,56 +18,58 @@
             border-radius: 50%; /* Make the logo circular */
             border: 0.2px solid #ffcc00; /* Yellow border */
         }
-
         .navbar-brand:hover img {
             transform: scale(1.1); /* Increase logo size on hover */
         }
-
         .navbar-text {
             color: #ffcc00; /* Yellow text color */
             font-weight: bold;
             font-size: 16px; /* Decreased font size */
         }
-
-        /* Custom CSS to change dropdown background color to black */
         .dropdown-menu {
             background-color: #ffffff;
             color:black;
         }
-
-        /* Custom CSS to change dropdown text color to white */
         .dropdown-menu a {
             color: black;
         }
         .nav-item {
-        list-style: none; /* Remove the default bullet point */
-    }
-
+            list-style: none; /* Remove the default bullet point */
+        }
         .hello-msg {
             color: white; /* Set text color to white */
             margin-right: 10px; /* Added margin to space out the links */
             white-space: nowrap;
         }
-
-        /* Adjusting spacing for better layout */
         .navbar-nav {
             margin-right: auto; /* Push the search form to the right */
         }
-
         .form-inline {
             margin-left: auto; /* Push the search form to the right */
         }
-        .user-info {
-            background-color: #e97700; /* Set background color to black */
-            color: white; /* Set text color to white */
-            padding: 5px; /* Add padding for spacing */
-            text-align: right; /* right-align text */
+        .user-info-mobile {
+            background-color: black; /* Set background color */
+            color: white; /* Set text color */
+            padding: 5px; /* Add padding */
+            text-align: center; /* Center-align text */
         }
-        .hello-msg-mobile {
-    text-transform: none; /* Ensure that text is not transformed to uppercase */
+
+
+.user-info {
+    display: flex;
+    justify-content: space-between;
 }
 
+.user-info .left {
+    flex-grow: 1;
+}
 
+.user-info .right {
+    margin-left: auto;
+}
+.hello-msg {
+    margin-right: auto; /* Moves the "Hi {{ request.user }}" to the left */
+}
     </style>
 </head>
 <body>
@@ -103,41 +101,26 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'Ekartapp:aboutus' %}"><i class="uil uil-info-circle"></i> ABOUT US</a>
                 </li>
-                <!-- Register link -->
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'login' %}"><i class="uil uil-user"></i> LOGIN</a>
                 </li>
                 {% if item_count > 0 %}
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'cart:cart_detail' %}" ><i class="uil uil-shopping-cart-alt"></i> ({{ item_count }})</a>
-                </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'cart:cart_detail' %}" ><i class="uil uil-shopping-cart-alt"></i> ({{ item_count }})</a>
+                    </li>
                 {% endif %}
-
-                    </div>
-                </li>
-
             </ul>
-
-
-<li class="nav-item">
-    <!-- This div pushes the content to the right and applies background color on mobile -->
-    <span class="hello-msg hello-msg-mobile">Hi {{request.user}}</span>
-    <span style="float: right;"><a class="hello-msg hello-msg-mobile" href="{% url 'logout' %}">Logout</a></span>
-</li>
-
-<!--            <form class="form-inline" action="{% url 'search_app:SearchResult' %}" method="get">-->
-<!--                {% csrf_token %}-->
-<!--                <input class="form-control mr-sm-2" type="search" placeholder="Search" name="q" aria-label="Search">-->
-<!--                <button class="btn btn-outline-primary my-2 my-sm-0" type="submit"><i class="uil uil-search"></i></button>-->
-<!--            </form>-->
         </div>
     </div>
-<!--    <span class="hello-msg">Hi {{request.user}}</span>-->
-<!--    <span><a class="hello-msg" href="{% url 'logout' %}">  Logout</a></span>-->
 </nav>
-<!--<div class="user-info">-->
-<!--    Hi {{ request.user }} <a href="{% url 'logout' %}" class="hello-msg">Logout</a>-->
-<!--</div>-->
+
+<div class="user-info user-info-mobile">
+     <span class="hello-msg">Hi {{ request.user }}</span>
+    <div class="right"><a href="{% url 'logout' %}" class="hello-msg">Logout</a></div>
+</div>
+
+
+<!-- JavaScript and Bootstrap CDN links -->
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
