@@ -1,164 +1,8 @@
-<!--<!DOCTYPE html>-->
-<!--<html>-->
-<!--<head>-->
-<!--    <title>Account registration form</title>-->
-<!--    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">-->
-<!--    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600' rel='stylesheet' type='text/css'>-->
-<!--    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">-->
-<!--    <style>-->
-<!--        html, body {-->
-<!--            min-height: 100%;-->
-<!--        }-->
-
-<!--        body, div, form, input, select, p {-->
-<!--            padding: 0;-->
-<!--            margin: 0;-->
-<!--            outline: none;-->
-<!--            font-family: Roboto, Arial, sans-serif;-->
-<!--            font-size: 14px;-->
-<!--            color: #666;-->
-<!--        }-->
-
-<!--        h1 {-->
-<!--            margin: 0;-->
-<!--            font-weight: 400;-->
-<!--        }-->
-
-<!--        h3 {-->
-<!--            margin: 12px 0;-->
-<!--            color: #8ebf42;-->
-<!--        }-->
-
-<!--        .main-block {-->
-<!--            display: flex;-->
-<!--            justify-content: center;-->
-<!--            align-items: center;-->
-<!--            background: #fff;-->
-<!--        }-->
-
-<!--        form {-->
-<!--            width: 100%;-->
-<!--            padding: 20px;-->
-<!--        }-->
-
-<!--        fieldset {-->
-<!--            border: none;-->
-<!--            border-top: 1px solid #8ebf42;-->
-<!--        }-->
-
-<!--        .personal-details > div {-->
-<!--            margin-bottom: 15px;-->
-<!--        }-->
-
-<!--        label {-->
-<!--            padding: 0 5px;-->
-<!--            text-align: right;-->
-<!--            vertical-align: middle;-->
-<!--        }-->
-
-<!--        input {-->
-<!--            padding: 8px;-->
-<!--            vertical-align: middle;-->
-<!--            border: 1px solid #ced4da;-->
-<!--            border-radius: 4px;-->
-<!--        }-->
-
-<!--        .btn-primary {-->
-<!--            background-color: #8ebf42;-->
-<!--            border-color: #8ebf42;-->
-<!--        }-->
-
-<!--        .btn-primary:hover {-->
-<!--            background-color: #82b534;-->
-<!--            border-color: #82b534;-->
-<!--        }-->
-
-<!--        .notification {-->
-<!--            color: red;-->
-<!--            font-size: 12px;-->
-<!--            display: none;-->
-<!--        }-->
-<!--    </style>-->
-<!--</head>-->
-<!--<body>-->
-<!--<nav class="navbar navbar-light bg-light">-->
-<!--    <a class="navbar-brand" href="#">login to your account before purchase</a>-->
-<!--    <ul class="navbar-nav ml-auto">-->
-<!--        <li class="nav-item">-->
-<!--            <a class="nav-link" href="{% url 'login' %}"><i class="uil uil-user"></i> Register</a>-->
-<!--        </li>-->
-<!--    </ul>-->
-<!--</nav>-->
-
-<!--<div class="main-block">-->
-<!--    <form id="registrationForm" action="{% url 'create_order' %}" method="POST" class="col-lg-6 col-md-8 col-sm-10">-->
-<!--        {% csrf_token %}-->
-
-<!--        <h3>Personal Details</h3>-->
-<!--        <div class="personal-details">-->
-<!--            <div class="form-group">-->
-<!--                <label for="name">Name*</label>-->
-<!--                <input type="text" class="form-control" id="name" name="name" value="{{ request.user }}" readonly>-->
-<!--            </div>-->
-<!--            <div class="form-group">-->
-<!--                <label for="phone">Phone*</label>-->
-<!--                <input type="text" class="form-control" id="phone" name="phone" value="{{ phone }}" required>-->
-<!--            </div>-->
-<!--            <div class="form-group">-->
-<!--                <label for="email">Email*</label>-->
-<!--                <input type="email" class="form-control" id="email" name="email" value="{{ request.user.email }}" readonly>-->
-<!--            </div>-->
-<!--            <div class="form-group">-->
-<!--                <label for="address1">Address 1*</label>-->
-<!--                <input type="text" class="form-control" id="address1" name="address1" value="{{ address1 }}" required>-->
-<!--            </div>-->
-<!--            <div class="form-group">-->
-<!--                <label for="address2">Address 2</label>-->
-<!--                <input type="text" class="form-control" id="address2" name="address2" value="{{ address2 }}">-->
-<!--            </div>-->
-<!--            <div class="form-row">-->
-<!--                <div class="form-group col-md-6">-->
-<!--                    <label for="city">City*</label>-->
-<!--                    <input type="text" class="form-control" id="city" name="city" value="{{ city }}" required>-->
-<!--                </div>-->
-<!--                <div class="form-group col-md-4">-->
-<!--                    <label for="state">State*</label>-->
-<!--                    <input type="text" class="form-control" id="state" name="state" value="{{ state }}" required>-->
-<!--                </div>-->
-<!--                <div class="form-group col-md-2">-->
-<!--                    <label for="pincode">Pincode*</label>-->
-<!--                    <input type="text" class="form-control" id="pincode" name="pincode" value="{{ pincode }}" required>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--        <div id="notification" class="notification">Please fill in all required fields or register first.</div>-->
-<!--        <button type="submit" id="submitBtn" class="btn btn-primary">Create Order</button>-->
-<!--    </form>-->
-<!--</div>-->
-
-<!--<script>-->
-<!--    document.getElementById('submitBtn').addEventListener('click', function(event) {-->
-<!--        var inputs = document.querySelectorAll('#registrationForm input[required]');-->
-<!--        var email = document.getElementById('email').value;-->
-<!--        var empty = false;-->
-<!--        inputs.forEach(function(input) {-->
-<!--            if (!input.value) {-->
-<!--                empty = true;-->
-<!--            }-->
-<!--        });-->
-<!--        if (empty || !email) {-->
-<!--            event.preventDefault();-->
-<!--            document.getElementById('notification').style.display = 'block';-->
-<!--        }-->
-<!--    });-->
-<!--</script>-->
-
-<!--</body>-->
-<!--</html>-->
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Account registration form</title>
+    <title>Delivery Address</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600' rel='stylesheet' type='text/css'>
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
@@ -171,9 +15,9 @@
             padding: 0;
             margin: 0;
             outline: none;
-            font-family: Roboto, Arial, sans-serif;
-            font-size: 20px;
-            color: #666;
+            font-family: 'Roboto', sans-serif;
+            font-size: 14px;
+            color: #333; /* Darker text color for better readability */
         }
 
         h1 {
@@ -183,47 +27,46 @@
 
         h3 {
             margin: 12px 0;
-            color: #8ebf42;
+            color: #82b534;
+            font-size: 24px; /* Increase font size for better emphasis */
         }
 
         .main-block {
             display: flex;
             justify-content: center;
             align-items: center;
-            background: #fff;
+            background: #f9f9f9; /* Light gray background for better contrast */
+            padding: 20px; /* Add padding for better spacing */
+            border-radius: 10px; /* Add border radius for a softer look */
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Add subtle shadow for depth */
         }
 
         form {
             width: 100%;
-            padding: 20px;
         }
 
-        fieldset {
-            border: none;
-            border-top: 1px solid #8ebf42;
-        }
-
-        .personal-details > div {
-            margin-bottom: 15px;
+        .form-group {
+            margin-bottom: 20px; /* Increase margin bottom for better spacing between fields */
         }
 
         label {
-            padding: 0 5px;
-            text-align: right;
-            vertical-align: middle;
+             /* Bold labels for better visibility */
+            color: black; /* Darker label color for better readability */
         }
 
         input {
-            padding: 8px;
-            vertical-align: middle;
-            border: 1px solid #ced4da;
-            border-radius: 4px;
+            padding: 10px;
+            border: 1px solid #ccc; /* Lighter border color for better contrast */
+            border-radius: 5px; /* Add border radius for a softer look */
         }
 
         .btn-primary {
             background-color: #8ebf42;
             border-color: #8ebf42;
+            padding: 10px 12px; /* Increase padding for better button size */
+            font-size: 20px; /* Increase font size for better visibility */
         }
+
 
         .btn-primary:hover {
             background-color: #82b534;
@@ -233,32 +76,42 @@
         .notification {
             color: red;
             font-size: 12px;
+            margin-top: 10px; /* Add margin top for better separation */
             display: none;
+        }
+        .navbar {
+            background-color: #333; /* Background color for navbar */
+            padding: 10px 20px; /* Padding for navbar content */
+            color: white; /* Text color for navbar links */
+            display: flex;
+            justify-content: space-between; /* Align items to the ends */
+            align-items: center;
         }
     </style>
 </head>
 <body>
-<nav class="navbar navbar-light bg-light">
-    <a class="navbar-brand" href="#"></a>
-    <ul class="navbar-nav ml-auto">
-        <li class="nav-item">
-            <a class="nav-link" href="{% url 'login' %}"><i class="uil uil-user"></i> Register</a>
-        </li>
-    </ul>
-</nav>
+<div class="navbar">
+    <!-- Left side -->
+    <div></div>
+    <!-- Right side -->
+    <div>
+        <!-- Cancel link -->
+        <a href="{% url 'cart:cart_detail' %}" class="cancel-link">Cancel</a>
+    </div>
+</div>
 
 <div class="main-block">
     <form id="registrationForm" action="{% url 'create_order' %}" method="POST" class="col-lg-6 col-md-8 col-sm-10">
         {% csrf_token %}
 
-        <h3>Personal Details</h3>
+        <h3>Delivery Adress</h3><br>
         <div class="personal-details">
             <div class="form-group">
-                <label for="name">Name*</label>
-                <input type="text" class="form-control" id="name" name="name" value="{{ request.user }}" readonly>
+                <label for="name">Full Name*</label>
+                <input type="text" class="form-control" id="name" name="name" value="{{ name }}" >
             </div>
             <div class="form-group">
-                <label for="phone">Phone*</label>
+                <label for="phone">Mobile Number*</label>
                 <input type="text" class="form-control" id="phone" name="phone" value="{{ phone }}" required>
             </div>
             <div class="form-group">
@@ -273,9 +126,18 @@
                 <label for="address2">Address 2</label>
                 <input type="text" class="form-control" id="address2" name="address2" value="{{ address2 }}">
             </div>
+            <div class="form-group">
+                <label for="area">Area/Street/Village*</label>
+                <input type="text" class="form-control" id="area" name="area" required>
+            </div>
+            <div class="form-group">
+                <label for="landmark">Landmark*</label>
+                <input type="text" class="form-control" id="landmark" name="landmark">
+            </div>
+
             <div class="form-row">
                 <div class="form-group col-md-6">
-                    <label for="city">City*</label>
+                    <label for="city">Town/City*</label>
                     <input type="text" class="form-control" id="city" name="city" value="{{ city }}" required>
                 </div>
                 <div class="form-group col-md-4">
@@ -287,7 +149,7 @@
                     <input type="text" class="form-control" id="pincode" name="pincode" value="{{ pincode }}" required>
                 </div>
             </div>
-        </div>
+        </div><br>
         <div id="notification" class="notification">1.Please fill in all the required fields (*)  OR <br> 2.If you are not a registered user <a href="{% url 'register' %}">Register</a>first.Also,make sure to <a href="{% url 'login' %}">Login </a> before placing the order</br></div>
         <button type="submit" id="submitBtn" class="btn btn-primary">Create Order</button>
     </form>

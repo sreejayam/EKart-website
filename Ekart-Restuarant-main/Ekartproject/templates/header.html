@@ -1,129 +1,129 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Title</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <style>
-        .navbar {
-            padding: 1px 10px; /* Decreased padding */
-            background-color: #8B0000;/* Changed background color to bluedark */
-            height: 60px; /* Decreased height by half */
-        }
-        .navbar-brand img {
-            transition: all 0.3s ease; /* Add transition effect for smoother resizing */
-            border-radius: 50%; /* Make the logo circular */
-            border: 0.2px solid #ffcc00; /* Yellow border */
-        }
-        .navbar-brand:hover img {
-            transform: scale(1.1); /* Increase logo size on hover */
-        }
-        .navbar-text {
-            color: #ffcc00; /* Yellow text color */
-            font-weight: bold;
-            font-size: 16px; /* Decreased font size */
-        }
-        .dropdown-menu {
-            background-color: #ffffff;
-            color:black;
-        }
-        .dropdown-menu a {
-            color: black;
-        }
-        .nav-item {
-            list-style: none; /* Remove the default bullet point */
-        }
-        .hello-msg {
-            color: white; /* Set text color to white */
-            margin-right: 10px; /* Added margin to space out the links */
-            white-space: nowrap;
-        }
-        .navbar-nav {
-            margin-right: auto; /* Push the search form to the right */
-        }
-        .form-inline {
-            margin-left: auto; /* Push the search form to the right */
-        }
-        .user-info-mobile {
-            background-color: black; /* Set background color */
-            color: white; /* Set text color */
-            padding: 5px; /* Add padding */
-            text-align: center; /* Center-align text */
-        }
+<!--{% load static %}-->
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+<!--    <title>Your Title</title>-->
+<!--    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">-->
+<!--    <link rel="stylesheet" href="{% static 'css/style.css' %}">-->
+<!--    <style>-->
+<!--        .navbar {-->
+<!--            padding: 1px 10px; /* Decreased padding */-->
+<!--            background-color: #8B0000;/* Changed background color to bluedark */-->
+<!--            height: 60px; /* Decreased height by half */-->
+<!--        }-->
+<!--        .navbar-brand img {-->
+<!--            transition: all 0.3s ease; /* Add transition effect for smoother resizing */-->
+<!--            border-radius: 50%; /* Make the logo circular */-->
+<!--            border: 0.2px solid #ffcc00; /* Yellow border */-->
+<!--        }-->
+<!--        .navbar-brand:hover img {-->
+<!--            transform: scale(1.1); /* Increase logo size on hover */-->
+<!--        }-->
+<!--        .navbar-text {-->
+<!--            color: #ffcc00; /* Yellow text color */-->
+<!--            font-weight: bold;-->
+<!--            font-size: 16px; /* Decreased font size */-->
+<!--        }-->
+<!--        .dropdown-menu {-->
+<!--            background-color: #ffffff;-->
+<!--            color:black;-->
+<!--        }-->
+<!--        .dropdown-menu a {-->
+<!--            color: black;-->
+<!--        }-->
+<!--        .nav-item {-->
+<!--            list-style: none; /* Remove the default bullet point */-->
+<!--        }-->
+<!--        .hello-msg {-->
+<!--            color: white; /* Set text color to white */-->
+<!--            margin-right: 10px; /* Added margin to space out the links */-->
+<!--            white-space: nowrap;-->
+<!--        }-->
+<!--        .navbar-nav {-->
+<!--            margin-right: auto; /* Push the search form to the right */-->
+<!--        }-->
+<!--        .form-inline {-->
+<!--            margin-left: auto; /* Push the search form to the right */-->
+<!--        }-->
+<!--        .user-info-mobile {-->
+<!--            background-color: black; /* Set background color */-->
+<!--            color: white; /* Set text color */-->
+<!--            padding: 5px; /* Add padding */-->
+<!--            text-align: center; /* Center-align text */-->
+<!--        }-->
 
 
-.user-info {
-    display: flex;
-    justify-content: space-between;
-}
+<!--.user-info {-->
+<!--    display: flex;-->
+<!--    justify-content: space-between;-->
+<!--}-->
 
-.user-info .left {
-    flex-grow: 1;
-}
+<!--.user-info .left {-->
+<!--    flex-grow: 1;-->
+<!--}-->
 
-.user-info .right {
-    margin-left: auto;
-}
-.hello-msg {
-    margin-right: auto; /* Moves the "Hi {{ request.user }}" to the left */
-}
-    </style>
-</head>
-<body>
+<!--.user-info .right {-->
+<!--    margin-left: auto;-->
+<!--}-->
+<!--.hello-msg {-->
+<!--    margin-right: auto; /* Moves the "Hi {{ request.user }}" to the left */-->
+<!--}-->
+<!--    </style>-->
+<!--</head>-->
+<!--<body>-->
 
-<nav class="navbar navbar-expand-lg navbar-dark">
-    <div class="container-fluid"> <!-- Changed container class to container-fluid for full width -->
-        <a class="navbar-brand mb-1" href="{% url 'Ekartapp:allProdCat' %}">
-            <img src="{% static 'img/logo3.png' %}" alt="log img" width="50" height="50" class="d-inline-block align-top">
-        </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'Ekartapp:allProdCat' %}"><i class="uil uil-home"></i> HOME</a>
-                </li>
-                <li class="nav-item dropdown {% if 'Ekartapp' in request.path %} active {% endif %}">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        <i class="uil uil-shopping-bag"></i> SHOP
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="{% url 'Ekartapp:allProdCat' %}">All Products</a></li>
-                        {% for cat in links %}
-                            <li><a class="dropdown-item" href="{{ cat.get_url }}">{{ cat.name }}</a></li>
-                        {% endfor %}
-                    </ul>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'Ekartapp:aboutus' %}"><i class="uil uil-info-circle"></i> ABOUT US</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'login' %}"><i class="uil uil-user"></i> LOGIN</a>
-                </li>
-                {% if item_count > 0 %}
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'cart:cart_detail' %}" ><i class="uil uil-shopping-cart-alt"></i> ({{ item_count }})</a>
-                    </li>
-                {% endif %}
-            </ul>
-        </div>
-    </div>
-</nav>
+<!--<nav class="navbar navbar-expand-lg navbar-dark">-->
+<!--    <div class="container-fluid"> &lt;!&ndash; Changed container class to container-fluid for full width &ndash;&gt;-->
+<!--        <a class="navbar-brand mb-1" href="{% url 'Ekartapp:allProdCat' %}">-->
+<!--            <img src="{% static 'img/logo3.png' %}" alt="log img" width="50" height="50" class="d-inline-block align-top">-->
+<!--        </a>-->
+<!--        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">-->
+<!--          <span class="navbar-toggler-icon"></span>-->
+<!--        </button>-->
+<!--        <div class="collapse navbar-collapse" id="navbarSupportedContent">-->
+<!--            <ul class="navbar-nav me-auto mb-2 mb-lg-0">-->
+<!--                <li class="nav-item">-->
+<!--                    <a class="nav-link" href="{% url 'Ekartapp:allProdCat' %}"><i class="uil uil-home"></i> HOME</a>-->
+<!--                </li>-->
+<!--                <li class="nav-item dropdown {% if 'Ekartapp' in request.path %} active {% endif %}">-->
+<!--                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">-->
+<!--                        <i class="uil uil-shopping-bag"></i> SHOP-->
+<!--                    </a>-->
+<!--                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">-->
+<!--                        <li><a class="dropdown-item" href="{% url 'Ekartapp:allProdCat' %}">All Products</a></li>-->
+<!--                        {% for cat in links %}-->
+<!--                            <li><a class="dropdown-item" href="{{ cat.get_url }}">{{ cat.name }}</a></li>-->
+<!--                        {% endfor %}-->
+<!--                    </ul>-->
+<!--                </li>-->
+<!--                <li class="nav-item">-->
+<!--                    <a class="nav-link" href="{% url 'Ekartapp:aboutus' %}"><i class="uil uil-info-circle"></i> ABOUT US</a>-->
+<!--                </li>-->
+<!--                <li class="nav-item">-->
+<!--                    <a class="nav-link" href="{% url 'login' %}"><i class="uil uil-user"></i> LOGIN</a>-->
+<!--                </li>-->
+<!--                {% if item_count > 0 %}-->
+<!--                    <li class="nav-item">-->
+<!--                        <a class="nav-link" href="{% url 'cart:cart_detail' %}" ><i class="uil uil-shopping-cart-alt"></i> ({{ item_count }})</a>-->
+<!--                    </li>-->
+<!--                {% endif %}-->
+<!--            </ul>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</nav>-->
 
-<div class="user-info user-info-mobile">
-     <span class="hello-msg">Hi {{ request.user }}</span>
-    <div class="right"><a href="{% url 'logout' %}" class="hello-msg">Logout</a></div>
-</div>
+<!--<div class="user-info user-info-mobile">-->
+<!--     <span class="hello-msg">Hi {{ request.user }}</span>-->
+<!--    <div class="right"><a href="{% url 'logout' %}" class="hello-msg">Logout</a></div>-->
+<!--</div>-->
 
 
-<!-- JavaScript and Bootstrap CDN links -->
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<!--&lt;!&ndash; JavaScript and Bootstrap CDN links &ndash;&gt;-->
+<!--<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>-->
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>-->
+<!--<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>-->
 
-</body>
-</html>
+<!--</body>-->
+<!--</html>-->
