@@ -93,7 +93,6 @@
     .carousel-container,
     .details-container {
         flex: 1;
-
     }
 
     .packet-gram-btn {
@@ -164,42 +163,17 @@
         padding: 10px 20px;
     }
 
-
+    .btn.elongated-btn {
+        width: 20%;
+        margin: 10px 0;
+    }
     .button-container {
-        display: flex;
-        justify-content: flex-start;
+    display: flex;
 
 }
     .button-space {
-    flex-grow: 0.0001; /* Allow space to grow between buttons */
+    flex-grow: 0.01; /* Allow space to grow between buttons */
 }
-    .btn.elongated-btn {
-    width: 20%; /* Set width to 48% to ensure both buttons have the same size */
-    margin: 10px 1%; /* Adjust margin */
-}
-
-@media (max-width: 767px) {
-    .btn.elongated-btn {
-        width: 30%; /* Set width to 100% for full width on mobile */
-        margin: 10px 1; /* Adjust margin */
-    }
-    .button-space {
-        flex-grow: 0.01; /* Allow space to grow between buttons */
-    }
-}
-@media (min-width: 768px) {
-    .details-container {
-        padding-left: 20px; /* Add left padding only for larger screens */
-        margin-top: 100px;
-    }
-}
-@media (min-width: 768px) {
-    .button-container {
-        justify-content: flex-start; /* Align buttons to the left */
-    }
-}
-
-
 
 
 
