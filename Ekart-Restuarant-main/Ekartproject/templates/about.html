@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,32 +7,52 @@
     <title>About Us - Savaari</title>
     <style>
         body {
-            font-family: Nunito, sans-serif;
+            font-family: 'Nunito', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f7f7f7;
+            background: url("{% static 'img/6.jpg' %}") no-repeat center center fixed;
+            background-size: cover;
             color: #333;
+            height: 100vh; /* Ensures the body takes up the full height of the viewport */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent background */
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
         .content {
             max-width: 800px;
-            margin: 0 auto;
             padding: 20px;
-            text-align: center;
+            z-index: 1; /* Ensures the content is above the overlay */
         }
 
         .heading {
             font-size: 2rem;
-            font-weight: bold;
             margin-bottom: 20px;
-            color: #333;
+            color: #000; /* Changed color to black */
+            font-family: 'Cursive', sans-serif; /* Changed font to cursive */
+            font-style: italic; /* Changed font style to italic */
         }
 
         .subHeading {
             font-size: 1rem;
             line-height: 1.5;
             margin-bottom: 20px;
-            color: #555;
+            color: #000; /* Changed color to black */
+            font-family: 'Cursive', sans-serif; /* Changed font to cursive */
+            font-style: italic; /* Changed font style to italic */
         }
 
         .highlight {
@@ -56,14 +77,17 @@
         .address {
             margin-top: 20px;
             font-size: 0.9rem;
-            color: #555;
+            color: #000; /* Changed color to black */
+            font-family: 'Cursive', sans-serif; /* Changed font to cursive */
+            font-style: italic; /* Changed font style to italic */
         }
 
         .phone {
             margin-top: 10px;
             font-size: 1rem;
-            font-weight: bold;
-            color: #333;
+            color: #000; /* Changed color to black */
+            font-family: 'Cursive', sans-serif; /* Changed font to cursive */
+            font-style: italic; /* Changed font style to italic */
         }
 
         @media (max-width: 768px) {
@@ -74,36 +98,39 @@
     </style>
 </head>
 <body>
-<div class="content">
-    <h2 class="heading">About Us</h2>
-    <p class="subHeading">
-        At <span class="highlight">Savaari</span>, we deliver and provide the highest quality and most delicious array of premium nuts that can be enjoyed as a snack or given as gifts to friends and family, truly being your go-to snack no matter what the occasion is!
-    </p>
-    <p class="subHeading">
-        We provide a variety of nuts that are not oil-fried and maintain their distinct tastes, flavors, textures, and aromas.
-    </p>
-    <p class="subHeading">
-        Remarkable nuts don’t just taste great; they are loaded with proteins, fiber, essential fats, antioxidants, and minerals, making them the ideal healthy snack, which is what we always strive for at <span class="highlight">Savaari</span>.
-    </p>
-    <p class="subHeading">
-        Our team is made up of talented professionals who bring a wealth of knowledge and expertise to every project. We are committed to delivering exceptional results and providing outstanding customer service to each and every one of our clients.
-    </p>
-    <div class="social-icons">
-        <a class="social-icon" href="https://www.facebook.com/yourpagename">
-            <img class="socialIcon image-block" src="https://workik-widget-assets.s3.amazonaws.com/widget-assets/images/bb33.png" alt="Facebook">
-        </a>
-        <a class="social-icon" href="https://twitter.com/yourusername">
-            <img class="socialIcon image-block" src="https://workik-widget-assets.s3.amazonaws.com/widget-assets/images/bb34.png" alt="Twitter">
-        </a>
-        <a class="social-icon" href="https://www.instagram.com/yourusername">
-            <img class="socialIcon image-block" src="https://workik-widget-assets.s3.amazonaws.com/widget-assets/images/bb35.png" alt="Instagram">
-        </a>
-        <a class="social-icon" href="https://www.linkedin.com/in/yourusername">
-            <img class="socialIcon image-block" src="https://workik-widget-assets.s3.amazonaws.com/widget-assets/images/bb36.png" alt="LinkedIn">
-        </a>
+<div class="overlay">
+    <div class="content">
+        <h2 class="heading">About Us</h2>
+
+        <p class="subHeading">
+            At <span class="highlight">Savaari</span>, we deliver and provide the highest quality and most delicious array of premium nuts that can be enjoyed as a snack or given as gifts to friends and family, truly being your go-to snack no matter what the occasion is!
+        </p>
+        <p class="subHeading">
+            We provide a variety of nuts that are not oil-fried and maintain their distinct tastes, flavors, textures, and aromas.
+        </p>
+        <p class="subHeading">
+            Remarkable nuts don’t just taste great; they are loaded with proteins, fiber, essential fats, antioxidants, and minerals, making them the ideal healthy snack, which is what we always strive for at <span class="highlight">Savaari</span>.
+        </p>
+        <p class="subHeading">
+            Our team is made up of talented professionals who bring a wealth of knowledge and expertise to every project. We are committed to delivering exceptional results and providing outstanding customer service to each and every one of our clients.
+        </p>
+        <div class="social-icons">
+            <a class="social-icon" href="https://www.facebook.com/yourpagename">
+                <img class="socialIcon image-block" src="https://workik-widget-assets.s3.amazonaws.com/widget-assets/images/bb33.png" alt="Facebook">
+            </a>
+            <a class="social-icon" href="https://twitter.com/yourusername">
+                <img class="socialIcon image-block" src="https://workik-widget-assets.s3.amazonaws.com/widget-assets/images/bb34.png" alt="Twitter">
+            </a>
+            <a class="social-icon" href="https://www.instagram.com/yourusername">
+                <img class="socialIcon image-block" src="https://workik-widget-assets.s3.amazonaws.com/widget-assets/images/bb35.png" alt="Instagram">
+            </a>
+            <a class="social-icon" href="https://www.linkedin.com/in/yourusername">
+                <img class="socialIcon image-block" src="https://workik-widget-assets.s3.amazonaws.com/widget-assets/images/bb36.png" alt="LinkedIn">
+            </a>
+        </div>
+        <p class="address">123 Main Street, Cityville, ABC123</p>
+        <p class="phone">Phone: +1234567890</p>
     </div>
-    <p class="address">123 Main Street, Cityville, ABC123</p>
-    <p class="phone">Phone: +1234567890</p>
 </div>
 </body>
 </html>

@@ -139,8 +139,11 @@
           <legend>
             <h3>Selected Product</h3>
           </legend>
-          <div class="gender" >
-            Product {{ product_id }} Price {{ price }}
+          <div class="gender">
+                    {% for order_item in order.orderitem_set.all %}
+                        Product: {{ order_item.product.name }} - Quantity: {{ order_item.quantity }} - Price: {{ order_item.price }}<br>
+                    {% endfor %}
+                    Total Amount: {{ order.total_amount }}
           </div>
         </fieldset>
         <fieldset>
@@ -171,7 +174,7 @@
         <input type="hidden" custom="Hidden Element" name="hidden">
       </form>
     </div>
-  </body
+  </body>
 <!--{% load static %}-->
 <!--<!DOCTYPE html>-->
 <!--<html>-->
