@@ -61,19 +61,22 @@
         }
 
         .btn-primary {
-            background-color: #ffcc00; /* Custom yellow background color */
-            border-color: #ffcc00; /* Custom yellow border color */
+            background-color: #dd7973; /* Custom yellow background color */
+            border-color: #dd7973; /* Custom yellow border color */
             color:black;
-<!--            background-color: #8ebf42;-->
-<!--            border-color: #8ebf42;-->
+            border-radius: 8px;
+            width:100%;
+
+
             padding: 10px 12px; /* Increase padding for better button size */
             font-size: 20px; /* Increase font size for better visibility */
         }
 
 
         .btn-primary:hover {
-            background-color: #82b534;
-            border-color: #82b534;
+            background-color: #dd7973;
+            border-color: #dd7973;
+            box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
         }
 
         .notification {
@@ -118,7 +121,7 @@
     <form id="registrationForm" action="{% url 'create_order' %}" method="POST" class="col-lg-6 col-md-8 col-sm-10">
         {% csrf_token %}
 
-        <h3>Delivery Adress</h3><br>
+        <h3>Delivery Address</h3><br>
         <div class="personal-details">
             <div class="form-group">
                 <label for="name">Full Name*</label>
@@ -166,7 +169,7 @@
 
         </div><br>
         <div id="notification" class="notification">1.Please fill in all the required fields (*)  OR <br> 2.If you are not a registered user <a href="{% url 'register' %}">Register</a>first.Also,make sure to <a href="{% url 'login' %}">Login </a> before placing the order</br></div>
-        <button type="submit" id="submitBtn" class="btn btn-primary">CREATE ORDER</button>
+        <button type="submit" id="submitBtn" class="btn btn-primary">Proceed to Pay</button>
 
     </form>
 </div>

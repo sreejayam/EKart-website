@@ -50,6 +50,7 @@ class Product(models.Model):
     image3 = models.ImageField(upload_to='product', blank=True)
     stock = models.IntegerField()
     available = models.BooleanField(default=True)
+    rating = models.FloatField(default=0.0)  # New rating field
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
 

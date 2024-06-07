@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
-
+{% load custom_filters %}
 {% block metadescription %}
    {% if category %}
       {{ category.description|truncatewords:200 }}
@@ -26,11 +26,20 @@
         position: absolute; /* Absolute position for the navbar */
         top: 0; /* Position at the top of the page */
     }
+    /* CSS for Rating Stars */
+    .star-rating {
+        font-size: 1.5em;
+        color: gold;
+
+    }
+
+
 
    @media screen and (max-width: 768px) {
     .nav-item {
         letter-spacing: .2em;
         font-size: 5px;
+        font-family: 'Lobster', cursive; /* Apply stylish font */
         text-transform: uppercase;
         background-color: rgba(0, 0, 0, 0.7);; /* Blood red background color */
         text-align: justify; /* Align text to the right */
@@ -230,6 +239,9 @@
                     <div class="card-body" style="padding-top:10px">
 
                         <h4 class="head" style="font-size:12px;font-weight:bold;  text-transform: uppercase; letter-spacing:.2em; font-family:'magilio', 'magilio'; color: black;">{{ product.name }}</h4>
+                        <div class="rating">
+                            {{ product.rating|star_rating }}
+                        </div>
                         <p class="price" style="font-size:10px;  color: black;margin-bottom: 2px;">RS.{{ product.price }}</p>
                         <p class="price" style="font-size:10px; color: black;margin-top: 0;">{{ product.grams }}gm</p>
 

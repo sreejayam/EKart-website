@@ -8,7 +8,7 @@ class ProductAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('name',)}
     fieldsets = (
         (None, {
-            'fields': ('name', 'slug', 'description', 'category', 'price', 'packet', 'grams', 'stock', 'available')
+            'fields': ('name', 'slug', 'description', 'category', 'price', 'packet', 'grams', 'stock', 'available','rating')
         }),
         ('Images', {
             'fields': ('image1', 'image2', 'image3')

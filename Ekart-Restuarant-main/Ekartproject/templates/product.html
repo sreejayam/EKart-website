@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
-
+{% load custom_filters %}
 {% block metadescription %}
     {{ product.description|truncatewords:200 }}
 {% endblock %}
@@ -63,9 +63,13 @@
         </div>
         <br><br>
         <div>
+
             <h1 class="prod">{{ product.name }}</h1>
+            <div class="rating">
+                {{ product.rating|star_rating }}
+            </div>
             <p class="price">Rs.{{ product.price }}</p>
-            <p class="title">Product Description</p>
+            <p class="title1">Product Description</p>
             <p class="title">Quantity: {{ product.grams }}gms</p>
             <p class="title">Packet Details: {{ product.packet }}</p>
             <p class="para">{{ product.description }}</p>
@@ -128,6 +132,11 @@
     .carousel-control-next span.sr-only {
         display: none;
     }
+    .star-rating {
+        font-size: 1.5em;
+        color: gold;
+
+    }
 
     @media (min-width: 768px) {
         .product-container {
@@ -136,24 +145,33 @@
     }
 
     .prod {
-        font-size: 12px;
+        font-size: 16px;
         font-weight: bold;
         text-transform: uppercase;
         letter-spacing: .2em;
         font-family: 'magilio', 'magilio';
         color: black;
+        margin-top: 150px;
     }
 
     .price {
         font-size: 14px;
     }
 
-    .title {
+    .title1 {
         font-size: 14px;
+        font-weight: bold;
+        text-transform: uppercase;
         font-family: 'magilio', 'magilio';
         color: black;
     }
+    .title {
+        font-size: 12px;
+        font-weight: bold;
 
+        font-family: 'magilio', 'magilio';
+        color: black;
+    }
     .para {
         font-family: italic small-caps bold 12px/30px Georgia, serif;
         font-size: 12px;
@@ -174,6 +192,15 @@
     .button-space {
     flex-grow: 0.01; /* Allow space to grow between buttons */
 }
+    @media (max-width: 600px) {
+        .carousel-item img {
+            margin-bottom: 2px; /* Reduced space */
+        }
+        .prod {
+            margin-top: 0.0001px; /* Reduced space */
+
+        }
+    }
 
 
 

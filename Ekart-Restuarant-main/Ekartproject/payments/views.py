@@ -239,8 +239,7 @@
 #         return render(request, 'order_summary.html', {'status': 'Payment Successful'})
 #     except:
 #         return render(request, 'order_summary.html', {'status': 'Payment Failure!!!'})
-
-
+from django.conf import settings
 from django.http import HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from Ekartapp.models import Product
@@ -248,7 +247,7 @@ from payments.models import Order, OrderItem
 from cart.models import Cart, CartItem
 from django.core.exceptions import ObjectDoesNotExist
 import razorpay
-
+from django.core.mail import send_mail
 client = razorpay.Client(auth=("rzp_test_dD3s7LqfVjjw7f", "j9yVuy7FQKOdoZit1N4jZimq"))
 
 def testing(request):
@@ -380,7 +379,12 @@ def payment_status(request):
 
         # Clear cart items after order is created
         cart_items.update(active=False)
-
+        # Sending order confirmation email
+        subject = 'Order Confirmation-Savaari'
+        message = f'Thank you for your order, {name}!\n\nYour order has been placed successfully.\nOrder ID: {order.order_id}\nTotal Amount: {total_amount}\n\nShipping Address:\n{address1}, {address2}, {city}, {state}, {pincode}'
+        email_from = settings.EMAIL_HOST_USER
+        recipient_list = [email]
+        send_mail(subject, message, email_from, recipient_list)
         return render(request, 'order_summary.html', {'status': 'Payment Successful', 'order': order})
     except:
         return render(request, 'order_summary.html', {'status': 'Payment Failure!!!'})
