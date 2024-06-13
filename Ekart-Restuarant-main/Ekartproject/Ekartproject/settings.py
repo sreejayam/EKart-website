@@ -24,7 +24,7 @@ SECRET_KEY = 'django-insecure--qc-$^t(1c*putm(**jcly2wcvguudb1av6!e&h)2$@7y9f5ss
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["savaarifoods.com"]
 
 # Application definition
 
