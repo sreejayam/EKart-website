@@ -24,7 +24,9 @@ SECRET_KEY = 'django-insecure--qc-$^t(1c*putm(**jcly2wcvguudb1av6!e&h)2$@7y9f5ss
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["savaarifoods.com"]
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
+SITE_ID=2
+
 
 # Application definition
 
@@ -39,8 +41,26 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'payments',
+    'social_django',
+
+
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google'
 
 ]
+SOCIALACCOUNT_PROVIDERS={
+    "google":{
+        "SCOPE":[
+            "profile",
+            "email"
+        ],
+        "AUTH_PARAMS":{"access_type":"online"}
+
+    }
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -50,6 +70,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'social_django.middleware.SocialAuthExceptionMiddleware',##google login
+'allauth.account.middleware.AccountMiddleware'##google
 ]
 
 ROOT_URLCONF = 'Ekartproject.urls'
@@ -136,3 +158,14 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'arathimv98@gmail.com'
 EMAIL_HOST_PASSWORD = 'Arathi@98'
+
+
+
+
+AUTHENTICATION_BACKENDS=(
+    "django.contrib.auth.backends.ModelBackend",
+    "allauth.account.auth_backends.AuthenticationBackend"
+)
+LOGIN_REDIRECT_URL="/"
+LOGOUT_REDIRECT_URL="/"
+SOCIAL_AUTH_URL_NAMESPACE = 'social'

@@ -25,8 +25,9 @@ urlpatterns = [
     path('register/', views.registerPage, name="register"),
 	path('login/', views.loginPage, name="login"),
 	path('logout/', views.logoutUser, name="logout"),
-    path('tokensignin/', views.token_signin, name='token_signin'),
+    # path('tokensignin/', views.token_signin, name='token_signin'),
     path('', views.home, name='home'),
+
 
 
     path('admin/', admin.site.urls),
@@ -34,6 +35,9 @@ urlpatterns = [
     path('search/', include('search_app.urls')),
     path('cart/', include('cart.urls')),
     path('payments/', include('payments.urls')),
+
+path('accounts/', include('allauth.urls')),
+ ##GOOGLE LOGIN
 
 ]
 if settings.DEBUG:
