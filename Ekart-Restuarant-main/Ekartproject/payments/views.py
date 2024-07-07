@@ -248,6 +248,10 @@ from cart.models import Cart, CartItem
 from django.core.exceptions import ObjectDoesNotExist
 import razorpay
 from django.core.mail import send_mail
+import logging
+
+# Set up logging
+logger = logging.getLogger(__name__)
 client = razorpay.Client(auth=("rzp_test_dD3s7LqfVjjw7f", "j9yVuy7FQKOdoZit1N4jZimq"))
 
 def testing(request):
@@ -328,63 +332,95 @@ def create_order(request):
     else:
         return HttpResponse('<h1>Invalid request method</h1>')
 
+# def payment_status(request):
+#     response = request.POST
+#     params_dict = {
+#         'razorpay_payment_id': response['razorpay_payment_id'],
+#         'razorpay_order_id': response['razorpay_order_id'],
+#         'razorpay_signature': response['razorpay_signature']
+#     }
+#
+#     # VERIFYING SIGNATURE
+#     try:
+#         status = client.utility.verify_payment_signature(params_dict)
+#
+#         # Fetch the order details from the session or a hidden form field
+#         name = request.POST.get('name')
+#         phone = request.POST.get('phone')
+#         email = request.POST.get('email')
+#         address1 = request.POST.get('address1')
+#         address2 = request.POST.get('address2')
+#         city = request.POST.get('city')
+#         state = request.POST.get('state')
+#         pincode = request.POST.get('pincode')
+#         total_amount = request.POST.get('total_amount')
+#
+#         cart = Cart.objects.get(cart_id=_cart_id(request))
+#         cart_items = CartItem.objects.filter(cart=cart, active=True)
+#
+#         # Payment successful, create order instance
+#         order = Order.objects.create(
+#             order_id=params_dict['razorpay_order_id'],
+#             name=name,
+#             phone=phone,
+#             email=email,
+#             address1=address1,
+#             address2=address2,
+#             city=city,
+#             state=state,
+#             pincode=pincode,
+#             total_amount=total_amount
+#         )
+#
+#         # Add order items
+#         for cart_item in cart_items:
+#             OrderItem.objects.create(
+#                 order=order,
+#                 product=cart_item.product,
+#                 quantity=cart_item.quantity,
+#                 price=cart_item.product.price
+#             )
+#
+#         # Clear cart items after order is created
+#         cart_items.update(active=False)
+#         # Sending order confirmation email
+#         subject = 'Order Confirmation-Savaari'
+#         message = f'Thank you for your order, {name}!\n\nYour order has been placed successfully.\nOrder ID: {order.order_id}\nTotal Amount: {total_amount}\n\nShipping Address:\n{address1}, {address2}, {city}, {state}, {pincode}'
+#         email_from = settings.EMAIL_HOST_USER
+#         recipient_list = [email]
+#         send_mail(subject, message, email_from, recipient_list)
+#         return render(request, 'order_summary.html', {'status': 'Payment Successful', 'order': order})
+#     except:
+#         return render(request, 'order_summary.html', {'status': 'Payment Failure!!!'})
+
 def payment_status(request):
     response = request.POST
+
     params_dict = {
-        'razorpay_payment_id': response['razorpay_payment_id'],
-        'razorpay_order_id': response['razorpay_order_id'],
-        'razorpay_signature': response['razorpay_signature']
+        'razorpay_payment_id': response.get('razorpay_payment_id'),
+        'razorpay_order_id': response.get('razorpay_order_id'),
+        'razorpay_signature': response.get('razorpay_signature')
     }
 
-    # VERIFYING SIGNATURE
     try:
         status = client.utility.verify_payment_signature(params_dict)
-
-        # Fetch the order details from the session or a hidden form field
-        name = request.POST.get('name')
-        phone = request.POST.get('phone')
-        email = request.POST.get('email')
-        address1 = request.POST.get('address1')
-        address2 = request.POST.get('address2')
-        city = request.POST.get('city')
-        state = request.POST.get('state')
-        pincode = request.POST.get('pincode')
-        total_amount = request.POST.get('total_amount')
-
-        cart = Cart.objects.get(cart_id=_cart_id(request))
-        cart_items = CartItem.objects.filter(cart=cart, active=True)
-
-        # Payment successful, create order instance
-        order = Order.objects.create(
-            order_id=params_dict['razorpay_order_id'],
-            name=name,
-            phone=phone,
-            email=email,
-            address1=address1,
-            address2=address2,
-            city=city,
-            state=state,
-            pincode=pincode,
-            total_amount=total_amount
+        # If payment is successful, send an email to the receiver
+        send_mail(
+            'Payment Successful: Savaari',
+            'Your payment has been successfully processed. Thank you for your purchase!',
+            settings.EMAIL_HOST_USER,
+            ['sreejayam16@gmail.com'],
+            fail_silently=False,
         )
-
-        # Add order items
-        for cart_item in cart_items:
-            OrderItem.objects.create(
-                order=order,
-                product=cart_item.product,
-                quantity=cart_item.quantity,
-                price=cart_item.product.price
-            )
-
-        # Clear cart items after order is created
-        cart_items.update(active=False)
-        # Sending order confirmation email
-        subject = 'Order Confirmation-Savaari'
-        message = f'Thank you for your order, {name}!\n\nYour order has been placed successfully.\nOrder ID: {order.order_id}\nTotal Amount: {total_amount}\n\nShipping Address:\n{address1}, {address2}, {city}, {state}, {pincode}'
-        email_from = settings.EMAIL_HOST_USER
-        recipient_list = [email]
-        send_mail(subject, message, email_from, recipient_list)
-        return render(request, 'order_summary.html', {'status': 'Payment Successful', 'order': order})
-    except:
+        return render(request, 'order_summary.html', {'status': 'Payment Successful'})
+    except Exception as e:
+        logger.error(f"Payment verification failed: {e}")
+        # If payment verification fails, send an email to the receiver
+        send_mail(
+            'Payment Failed: Savaari',
+            'Your payment has failed. Please try again or contact support if you have any questions.',
+            settings.EMAIL_HOST_USER,
+            ['sreejayam16@gmail.com'],
+            fail_silently=False,
+        )
         return render(request, 'order_summary.html', {'status': 'Payment Failure!!!'})

@@ -151,13 +151,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-#email-orderconfirmation
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'arathimv98@gmail.com'
-EMAIL_HOST_PASSWORD = 'Arathi@98'
+
 
 
 
@@ -169,3 +163,12 @@ AUTHENTICATION_BACKENDS=(
 LOGIN_REDIRECT_URL="/"
 LOGOUT_REDIRECT_URL="/"
 SOCIAL_AUTH_URL_NAMESPACE = 'social'
+
+#email order confirmation
+EMAIL_HOST='smtp.gmail.com'
+EMAIL_HOST_USER='sreejayam16@gmail.com'
+EMAIL_HOST_PASSWORD='nusk syuu zpxs mqbm'
+EMAIL_PORT=587
+EMAIL_USE_TLS=True
+EMAIL_BACKEND='django.core.mail.backends.smtp.EmailBackend'
+EMAIL_DEBUG=True
