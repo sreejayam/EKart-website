@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Payment Method</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            text-align: center;
+            padding: 50px;
+            background-color: #f9f9f9;
+        }
+        .button {
+            background-color: #ffcc00;
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Select Payment Method</h2>
+    <p>Name: {{ name }}</p>
+    <p>Phone: {{ phone }}</p>
+    <p>Email: {{ email }}</p>
+    <p>Amount: {{ price }}</p>
+
+    <form action="{% url 'confirm_cash_on_delivery' %}" method="post">
+        {% csrf_token %}
+        <input type="hidden" name="name" value="{{ name }}">
+        <input type="hidden" name="phone" value="{{ phone }}">
+        <input type="hidden" name="email" value="{{ email }}">
+        <input type="hidden" name="address1" value="{{ address1 }}">
+        <input type="hidden" name="address2" value="{{ address2 }}">
+        <input type="hidden" name="city" value="{{ city }}">
+        <input type="hidden" name="state" value="{{ state }}">
+        <input type="hidden" name="pincode" value="{{ pincode }}">
+        <input type="hidden" name="total_amount" value="{{ price }}">
+        <button class="button" type="submit">Cash on Delivery</button>
+    </form>
+    <form action="{% url 'confirm_online_payment' %}" method="post">
+        {% csrf_token %}
+        <input type="hidden" name="name" value="{{ name }}">
+        <input type="hidden" name="phone" value="{{ phone }}">
+        <input type="hidden" name="email" value="{{ email }}">
+        <input type="hidden" name="address1" value="{{ address1 }}">
+        <input type="hidden" name="address2" value="{{ address2 }}">
+        <input type="hidden" name="city" value="{{ city }}">
+        <input type="hidden" name="state" value="{{ state }}">
+        <input type="hidden" name="pincode" value="{{ pincode }}">
+        <input type="hidden" name="total_amount" value="{{ price }}">
+        <button class="button" type="submit">Online Payment</button>
+    </form>
+</body>
+</html>

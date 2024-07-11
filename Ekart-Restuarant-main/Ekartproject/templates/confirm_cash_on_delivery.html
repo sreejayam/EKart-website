@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirmation</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            text-align: center;
+            padding: 50px;
+            background-color: #f9f9f9;
+        }
+        .button {
+            background-color: #ffcc00;
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Confirmation Page</h1>
+    <p>Are you sure you want to confirm your order?</p>
+    <form action="{% url 'handle_confirm_order' %}" method="POST">
+        {% csrf_token %}
+        <button class="button" type="submit">Confirm Order</button>
+    </form>
+</body>
+</html>
